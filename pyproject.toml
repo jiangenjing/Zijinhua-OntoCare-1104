@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ontocare-rsi-rebuild"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["flask>=3,<4", "mcp>=1.30,<2", "openpyxl>=3.1,<4", "numpy>=2,<3", "jsonschema>=4,<5", "matplotlib>=3.9,<4", "evoontology @ git+https://github.com/ruc-datalab/EvoOntology.git@c94389b764394379086ff25e50d0e0f4396167b4"]
+
+[project.optional-dependencies]
+vectors = ["sentence-transformers>=3,<7"]
+dev = ["pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+include = ["ontocare*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

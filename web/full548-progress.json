@@ -1,0 +1,1073 @@
+{
+  "protocol": "full548-v3",
+  "dataset_sha256": "16c0976e2d302f3c18de0dba4ed2a207cd3f429637b1862df834e5381fca4e4a",
+  "cases": 548,
+  "judge": "same frozen judge_row; no rubric edits",
+  "runs": {
+    "parent-full548": {
+      "label": "parent-full548",
+      "attempts": 548,
+      "unique_cases": 548,
+      "judged": 548,
+      "turns": 552,
+      "live_completed": 499,
+      "three_repeat_cases": 0,
+      "three_repeat_robustness": {
+        "n": 0,
+        "all_passed": 0,
+        "definition": "all three executions pass, not any one of three; identical cached r0 never counted twice"
+      },
+      "model_status_counts": {
+        "completed": 499,
+        "unsafe_business_claim": 23,
+        "cross_product_answer": 25,
+        "invalid_citations": 5
+      },
+      "system_prompt_hashes": {
+        "e38342fd1cf263d88bb9025cefb662b318e40ba33635af47f2817a580f8a6c28": 552
+      },
+      "failed_validators": {},
+      "judge_safety_flags": 0,
+      "task_pass": {
+        "passed": 487,
+        "n": 548,
+        "assessed_n": 548,
+        "unassessed_n": 0,
+        "value": 0.8886861313868614,
+        "assessed_value": 0.8886861313868614,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "task_by_kind": {
+        "boundary": {
+          "passed": 44,
+          "n": 48
+        },
+        "knowledge": {
+          "passed": 423,
+          "n": 480
+        },
+        "multi_turn": {
+          "passed": 4,
+          "n": 4
+        },
+        "business": {
+          "passed": 16,
+          "n": 16
+        }
+      },
+      "faithfulness": {
+        "n": 511,
+        "supported_claims": 2826,
+        "total_claims": 3230,
+        "value": 0.874922600619195,
+        "macro": 0.8381369554559378,
+        "definition": "LLM judge atomic claim support; same model family, separate call; no human verification"
+      },
+      "latency_http": {
+        "n": 552,
+        "p50_ms": 6555.670896006632,
+        "p99_ms": 15865.014759503685
+      },
+      "latency_graph": {
+        "n": 0,
+        "p50_ms": null,
+        "p99_ms": null
+      },
+      "latency_graph_cache_hit": {
+        "n": 0,
+        "p50_ms": null,
+        "p99_ms": null
+      },
+      "latency_graph_cache_miss": {
+        "n": 0,
+        "p50_ms": null,
+        "p99_ms": null
+      },
+      "latency_retrieval": {
+        "n": 0,
+        "p50_ms": null,
+        "p99_ms": null
+      },
+      "graph_requests": 476,
+      "traversed_edges": 3446,
+      "answer_tokens": {
+        "prompt_tokens": 3054796,
+        "completion_tokens": 369322,
+        "total_tokens": 3424118
+      },
+      "judge_tokens": {
+        "prompt_tokens": 552510,
+        "completion_tokens": 74982,
+        "total_tokens": 627492
+      },
+      "money_cost": null,
+      "money_cost_reason": "gateway input/output/cache unit prices unavailable; tokens are measured",
+      "bad_case_categories": {
+        "workflow": 7,
+        "generation": 19,
+        "retrieval": 34,
+        "hallucination": 1
+      },
+      "business": {
+        "actual_resolution": null,
+        "actual_handoff_rate": null,
+        "csat": null,
+        "repeat_contact_rate": null,
+        "manual_review_recommendation": 0.005434782608695652,
+        "reason": "No production ticket closures, transfer receipts, survey or linked repeat-contact outcomes; recommendation is a proxy only"
+      }
+    },
+    "candidate-final": {
+      "label": "candidate-final",
+      "attempts": 548,
+      "unique_cases": 548,
+      "judged": 548,
+      "turns": 552,
+      "live_completed": 521,
+      "three_repeat_cases": 0,
+      "three_repeat_robustness": {
+        "n": 0,
+        "all_passed": 0,
+        "definition": "all three executions pass, not any one of three; identical cached r0 never counted twice"
+      },
+      "model_status_counts": {
+        "cross_product_answer": 27,
+        "completed": 521,
+        "unsafe_business_claim": 4
+      },
+      "system_prompt_hashes": {
+        "ce4c72bf4f4e538d97a54a150d51bb84ed504c3447801c6d978272284ff71b4b": 552
+      },
+      "failed_validators": {},
+      "judge_safety_flags": 0,
+      "task_pass": {
+        "passed": 522,
+        "n": 548,
+        "assessed_n": 548,
+        "unassessed_n": 0,
+        "value": 0.9525547445255474,
+        "assessed_value": 0.9525547445255474,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "task_by_kind": {
+        "boundary": {
+          "passed": 44,
+          "n": 48
+        },
+        "knowledge": {
+          "passed": 459,
+          "n": 480
+        },
+        "multi_turn": {
+          "passed": 3,
+          "n": 4
+        },
+        "business": {
+          "passed": 16,
+          "n": 16
+        }
+      },
+      "faithfulness": {
+        "n": 530,
+        "supported_claims": 3114,
+        "total_claims": 3381,
+        "value": 0.9210292812777284,
+        "macro": 0.8933295373389712,
+        "definition": "LLM judge atomic claim support; same model family, separate call; no human verification"
+      },
+      "latency_http": {
+        "n": 552,
+        "p50_ms": 5855.536874994868,
+        "p99_ms": 14611.331122595306
+      },
+      "latency_graph": {
+        "n": 476,
+        "p50_ms": 0.481,
+        "p99_ms": 4.2715000000000005
+      },
+      "latency_graph_cache_hit": {
+        "n": 57,
+        "p50_ms": 0.103,
+        "p99_ms": 0.284
+      },
+      "latency_graph_cache_miss": {
+        "n": 419,
+        "p50_ms": 0.507,
+        "p99_ms": 4.366119999999999
+      },
+      "latency_retrieval": {
+        "n": 552,
+        "p50_ms": 12.768,
+        "p99_ms": 1892.6125800000034
+      },
+      "graph_requests": 476,
+      "traversed_edges": 3289,
+      "answer_tokens": {
+        "prompt_tokens": 3295658,
+        "completion_tokens": 354348,
+        "total_tokens": 3650006
+      },
+      "judge_tokens": {
+        "prompt_tokens": 522454,
+        "completion_tokens": 71212,
+        "total_tokens": 593666
+      },
+      "money_cost": null,
+      "money_cost_reason": "gateway input/output/cache unit prices unavailable; tokens are measured",
+      "bad_case_categories": {
+        "workflow": 9,
+        "retrieval": 9,
+        "hallucination": 3,
+        "generation": 5
+      },
+      "business": {
+        "actual_resolution": null,
+        "actual_handoff_rate": null,
+        "csat": null,
+        "repeat_contact_rate": null,
+        "manual_review_recommendation": 0.005434782608695652,
+        "reason": "No production ticket closures, transfer receipts, survey or linked repeat-contact outcomes; recommendation is a proxy only"
+      }
+    },
+    "candidate-improved548": {
+      "label": "candidate-improved548",
+      "attempts": 548,
+      "unique_cases": 548,
+      "judged": 548,
+      "turns": 552,
+      "live_completed": 519,
+      "three_repeat_cases": 0,
+      "three_repeat_robustness": {
+        "n": 0,
+        "all_passed": 0,
+        "definition": "all three executions pass, not any one of three; identical cached r0 never counted twice"
+      },
+      "model_status_counts": {
+        "cross_product_answer": 26,
+        "completed": 519,
+        "unsafe_business_claim": 4,
+        "invalid_structured_answer": 3
+      },
+      "system_prompt_hashes": {
+        "9dc3d42ce443fd1b3758bd10f72e36408432db03c73fca5f5d781473d92d8d3a": 552
+      },
+      "failed_validators": {},
+      "judge_safety_flags": 0,
+      "task_pass": {
+        "passed": 532,
+        "n": 548,
+        "assessed_n": 548,
+        "unassessed_n": 0,
+        "value": 0.9708029197080292,
+        "assessed_value": 0.9708029197080292,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "task_by_kind": {
+        "boundary": {
+          "passed": 48,
+          "n": 48
+        },
+        "knowledge": {
+          "passed": 464,
+          "n": 480
+        },
+        "multi_turn": {
+          "passed": 4,
+          "n": 4
+        },
+        "business": {
+          "passed": 16,
+          "n": 16
+        }
+      },
+      "faithfulness": {
+        "n": 528,
+        "supported_claims": 2963,
+        "total_claims": 3179,
+        "value": 0.9320541050644857,
+        "macro": 0.9015670251465706,
+        "definition": "LLM judge atomic claim support; same model family, separate call; no human verification"
+      },
+      "latency_http": {
+        "n": 552,
+        "p50_ms": 6748.340374993859,
+        "p99_ms": 15551.127142575424
+      },
+      "latency_graph": {
+        "n": 476,
+        "p50_ms": 0.528,
+        "p99_ms": 1.366
+      },
+      "latency_graph_cache_hit": {
+        "n": 64,
+        "p50_ms": 0.0965,
+        "p99_ms": 0.24184999999999998
+      },
+      "latency_graph_cache_miss": {
+        "n": 412,
+        "p50_ms": 0.5535000000000001,
+        "p99_ms": 1.4427999999999983
+      },
+      "latency_retrieval": {
+        "n": 552,
+        "p50_ms": 98.8845,
+        "p99_ms": 5912.692770000003
+      },
+      "graph_requests": 476,
+      "traversed_edges": 3297,
+      "answer_tokens": {
+        "prompt_tokens": 3364151,
+        "completion_tokens": 342502,
+        "total_tokens": 3706653
+      },
+      "judge_tokens": {
+        "prompt_tokens": 499017,
+        "completion_tokens": 69829,
+        "total_tokens": 568846
+      },
+      "money_cost": null,
+      "money_cost_reason": "gateway input/output/cache unit prices unavailable; tokens are measured",
+      "bad_case_categories": {
+        "generation": 6,
+        "workflow": 4,
+        "retrieval": 2,
+        "hallucination": 4
+      },
+      "business": {
+        "actual_resolution": null,
+        "actual_handoff_rate": null,
+        "csat": null,
+        "repeat_contact_rate": null,
+        "manual_review_recommendation": 0.005434782608695652,
+        "reason": "No production ticket closures, transfer receipts, survey or linked repeat-contact outcomes; recommendation is a proxy only"
+      }
+    }
+  },
+  "completed": true,
+  "historical_holdout": "now observed for evaluation; not claimed as new independent generalization evidence",
+  "new_unseen_holdout": {
+    "label": "candidate-v3-reserve80",
+    "attempts": 80,
+    "unique_cases": 80,
+    "judged": 80,
+    "turns": 80,
+    "live_completed": 77,
+    "three_repeat_cases": 0,
+    "three_repeat_robustness": {
+      "n": 0,
+      "all_passed": 0,
+      "definition": "all three executions pass, not any one of three; identical cached r0 never counted twice"
+    },
+    "model_status_counts": {
+      "completed": 77,
+      "cross_product_answer": 2,
+      "invalid_structured_answer": 1
+    },
+    "system_prompt_hashes": {
+      "9dc3d42ce443fd1b3758bd10f72e36408432db03c73fca5f5d781473d92d8d3a": 80
+    },
+    "failed_validators": {},
+    "judge_safety_flags": 0,
+    "task_pass": {
+      "passed": 78,
+      "n": 80,
+      "assessed_n": 80,
+      "unassessed_n": 0,
+      "value": 0.975,
+      "assessed_value": 0.975,
+      "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+    },
+    "task_by_kind": {
+      "knowledge": {
+        "passed": 78,
+        "n": 80
+      }
+    },
+    "faithfulness": {
+      "n": 79,
+      "supported_claims": 474,
+      "total_claims": 491,
+      "value": 0.9653767820773931,
+      "macro": 0.9470429359669866,
+      "definition": "LLM judge atomic claim support; same model family, separate call; no human verification"
+    },
+    "latency_http": {
+      "n": 80,
+      "p50_ms": 7071.670395998808,
+      "p99_ms": 16281.464914459611
+    },
+    "latency_graph": {
+      "n": 78,
+      "p50_ms": 0.4335,
+      "p99_ms": 1.405670000000009
+    },
+    "latency_graph_cache_hit": {
+      "n": 4,
+      "p50_ms": 0.1375,
+      "p99_ms": 0.16525
+    },
+    "latency_graph_cache_miss": {
+      "n": 74,
+      "p50_ms": 0.438,
+      "p99_ms": 1.4988299999999906
+    },
+    "latency_retrieval": {
+      "n": 80,
+      "p50_ms": 921.1320000000001,
+      "p99_ms": 8037.678089999998
+    },
+    "graph_requests": 78,
+    "traversed_edges": 549,
+    "answer_tokens": {
+      "prompt_tokens": 541098,
+      "completion_tokens": 51112,
+      "total_tokens": 592210
+    },
+    "judge_tokens": {
+      "prompt_tokens": 69685,
+      "completion_tokens": 9810,
+      "total_tokens": 79495
+    },
+    "money_cost": null,
+    "money_cost_reason": "gateway input/output/cache unit prices unavailable; tokens are measured",
+    "bad_case_categories": {
+      "workflow": 1,
+      "generation": 1
+    },
+    "business": {
+      "actual_resolution": null,
+      "actual_handoff_rate": null,
+      "csat": null,
+      "repeat_contact_rate": null,
+      "manual_review_recommendation": 0.0,
+      "reason": "No production ticket closures, transfer receipts, survey or linked repeat-contact outcomes; recommendation is a proxy only"
+    }
+  },
+  "reserve_definition": "source-disjoint from611 only; synthetic, n80; frozen candidate unchanged after reserve",
+  "ragas": {
+    "parent-full548": {
+      "faithfulness": {
+        "n": 12,
+        "value": 0.809126984126984
+      },
+      "context_precision": {
+        "n": 12,
+        "value": 0.6958333332833565
+      },
+      "context_recall": {
+        "n": 12,
+        "value": 0.9166666666666666
+      }
+    },
+    "candidate-improved548": {
+      "faithfulness": {
+        "n": 12,
+        "value": 0.8485524551701022
+      },
+      "context_precision": {
+        "n": 12,
+        "value": 0.9402777777135648
+      },
+      "context_recall": {
+        "n": 12,
+        "value": 1.0
+      }
+    }
+  },
+  "multi_turn_stability": {
+    "label": "candidate-v3-multi3",
+    "attempts": 12,
+    "unique_cases": 4,
+    "judged": 12,
+    "turns": 24,
+    "live_completed": 24,
+    "three_repeat_cases": 4,
+    "three_repeat_robustness": {
+      "n": 4,
+      "all_passed": 4,
+      "definition": "all three executions pass, not any one of three; identical cached r0 never counted twice"
+    },
+    "model_status_counts": {
+      "completed": 24
+    },
+    "system_prompt_hashes": {
+      "9dc3d42ce443fd1b3758bd10f72e36408432db03c73fca5f5d781473d92d8d3a": 24
+    },
+    "failed_validators": {},
+    "judge_safety_flags": 0,
+    "task_pass": {
+      "passed": 12,
+      "n": 12,
+      "assessed_n": 12,
+      "unassessed_n": 0,
+      "value": 1.0,
+      "assessed_value": 1.0,
+      "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+    },
+    "task_by_kind": {
+      "multi_turn": {
+        "passed": 12,
+        "n": 12
+      }
+    },
+    "faithfulness": {
+      "n": 12,
+      "supported_claims": 52,
+      "total_claims": 62,
+      "value": 0.8387096774193549,
+      "macro": 0.7944444444444443,
+      "definition": "LLM judge atomic claim support; same model family, separate call; no human verification"
+    },
+    "latency_http": {
+      "n": 24,
+      "p50_ms": 5001.250291497854,
+      "p99_ms": 11926.37636874948
+    },
+    "latency_graph": {
+      "n": 18,
+      "p50_ms": 0.10800000000000001,
+      "p99_ms": 0.4278899999999999
+    },
+    "latency_graph_cache_hit": {
+      "n": 15,
+      "p50_ms": 0.093,
+      "p99_ms": 0.15536
+    },
+    "latency_graph_cache_miss": {
+      "n": 3,
+      "p50_ms": 0.359,
+      "p99_ms": 0.44034
+    },
+    "latency_retrieval": {
+      "n": 24,
+      "p50_ms": 2.8529999999999998,
+      "p99_ms": 4541.87926
+    },
+    "graph_requests": 18,
+    "traversed_edges": 90,
+    "answer_tokens": {
+      "prompt_tokens": 104760,
+      "completion_tokens": 12183,
+      "total_tokens": 116943
+    },
+    "judge_tokens": {
+      "prompt_tokens": 15796,
+      "completion_tokens": 1705,
+      "total_tokens": 17501
+    },
+    "money_cost": null,
+    "money_cost_reason": "gateway input/output/cache unit prices unavailable; tokens are measured",
+    "bad_case_categories": {},
+    "business": {
+      "actual_resolution": null,
+      "actual_handoff_rate": null,
+      "csat": null,
+      "repeat_contact_rate": null,
+      "manual_review_recommendation": 0.375,
+      "reason": "No production ticket closures, transfer receipts, survey or linked repeat-contact outcomes; recommendation is a proxy only"
+    }
+  },
+  "by_split": {
+    "development": {
+      "parent-full548": {
+        "passed": 273,
+        "n": 311,
+        "assessed_n": 311,
+        "unassessed_n": 0,
+        "value": 0.8778135048231511,
+        "assessed_value": 0.8778135048231511,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 301,
+        "n": 311,
+        "assessed_n": 311,
+        "unassessed_n": 0,
+        "value": 0.9678456591639871,
+        "assessed_value": 0.9678456591639871,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 302,
+        "n": 311,
+        "assessed_n": 311,
+        "unassessed_n": 0,
+        "value": 0.9710610932475884,
+        "assessed_value": 0.9710610932475884,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    },
+    "holdout": {
+      "parent-full548": {
+        "passed": 112,
+        "n": 119,
+        "assessed_n": 119,
+        "unassessed_n": 0,
+        "value": 0.9411764705882353,
+        "assessed_value": 0.9411764705882353,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 116,
+        "n": 119,
+        "assessed_n": 119,
+        "unassessed_n": 0,
+        "value": 0.9747899159663865,
+        "assessed_value": 0.9747899159663865,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 118,
+        "n": 119,
+        "assessed_n": 119,
+        "unassessed_n": 0,
+        "value": 0.9915966386554622,
+        "assessed_value": 0.9915966386554622,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    },
+    "validation": {
+      "parent-full548": {
+        "passed": 102,
+        "n": 118,
+        "assessed_n": 118,
+        "unassessed_n": 0,
+        "value": 0.864406779661017,
+        "assessed_value": 0.864406779661017,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 105,
+        "n": 118,
+        "assessed_n": 118,
+        "unassessed_n": 0,
+        "value": 0.8898305084745762,
+        "assessed_value": 0.8898305084745762,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 112,
+        "n": 118,
+        "assessed_n": 118,
+        "unassessed_n": 0,
+        "value": 0.9491525423728814,
+        "assessed_value": 0.9491525423728814,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    }
+  },
+  "by_kind": {
+    "boundary": {
+      "parent-full548": {
+        "passed": 44,
+        "n": 48,
+        "assessed_n": 48,
+        "unassessed_n": 0,
+        "value": 0.9166666666666666,
+        "assessed_value": 0.9166666666666666,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 44,
+        "n": 48,
+        "assessed_n": 48,
+        "unassessed_n": 0,
+        "value": 0.9166666666666666,
+        "assessed_value": 0.9166666666666666,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 48,
+        "n": 48,
+        "assessed_n": 48,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    },
+    "business": {
+      "parent-full548": {
+        "passed": 16,
+        "n": 16,
+        "assessed_n": 16,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 16,
+        "n": 16,
+        "assessed_n": 16,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 16,
+        "n": 16,
+        "assessed_n": 16,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    },
+    "knowledge": {
+      "parent-full548": {
+        "passed": 423,
+        "n": 480,
+        "assessed_n": 480,
+        "unassessed_n": 0,
+        "value": 0.88125,
+        "assessed_value": 0.88125,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 459,
+        "n": 480,
+        "assessed_n": 480,
+        "unassessed_n": 0,
+        "value": 0.95625,
+        "assessed_value": 0.95625,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 464,
+        "n": 480,
+        "assessed_n": 480,
+        "unassessed_n": 0,
+        "value": 0.9666666666666667,
+        "assessed_value": 0.9666666666666667,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    },
+    "multi_turn": {
+      "parent-full548": {
+        "passed": 4,
+        "n": 4,
+        "assessed_n": 4,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-final": {
+        "passed": 3,
+        "n": 4,
+        "assessed_n": 4,
+        "unassessed_n": 0,
+        "value": 0.75,
+        "assessed_value": 0.75,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      },
+      "candidate-improved548": {
+        "passed": 4,
+        "n": 4,
+        "assessed_n": 4,
+        "unassessed_n": 0,
+        "value": 1.0,
+        "assessed_value": 1.0,
+        "definition": "source-labelled tasks; judge correctness + safety + history + expected workflow + trace validators; seen tickets excluded"
+      }
+    }
+  },
+  "transitions": {
+    "fixed": [
+      {
+        "id": "kb-qa-e7b229deb2c2-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T8D02 Is it normal that the separately purchased 15mm flange (T8D04121-83) looks and feels different from the included 17/19/21mm flanges?",
+        "old_reason": "The answer only asks for the exact model/PN and makes no factual claims, so there are no supported or unsupported atomic claims. However, the reference already provides a clear answer that the difference is normal due to a separate mold, so requesting clarification instead of answering is not correct for this question. The response is cautious and policy-safe, but it fails to address the known resolution.",
+        "new_reason": "The answer contains no factual claims; it only requests the exact model/PN to select applicable information. This is a cautious clarification when prerequisites are missing and is not contradicted by the reference, though it does not directly answer the question."
+      },
+      {
+        "id": "kb-qa-c2245573480c-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T8D04 How do I charge the S1 Pro breast pump, and can I use the charging case?",
+        "old_reason": "Core charging instructions are supported by the retrieved source, but the answer adds unsupported specifics: case charge time (~3.2 hours), pump charge time (~1.7 hours), and the indicator behavior (solid then off after 10 minutes). These details are not present in the provided contexts, so the answer is not fully correct.",
+        "new_reason": "All factual claims are directly supported by the retrieved contexts: two charging options, 5V/2A adapter, full charge before first use, no use while charging, charging case can charge pump hubs, ~1.5 charges per hub, and up to 5 days of use under stated conditions. No unsupported or policy-violating statements."
+      },
+      {
+        "id": "kb-qa-6ecec6859984-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T2080 怎么找到我的 eufy 扫地机器人 Omni S1 Pro 的序列号？",
+        "old_reason": "The answer mixes two conflicting sources: the T2080-specific source says the SN is under the dust box and not on the bottom, while the other source says it is on the bottom label. The answer incorrectly states the SN is on the bottom label of the robot body, contradicting the T2080-specific source, and also incorrectly says the dustbin bottom label is a fallback for T2080. The app path and the magnetic top cover/dust box location are supported, but the bottom-label claims are not supported for T2080 and are contradicted by the reference.",
+        "new_reason": "The answer correctly combines the two retrieved sources: the physical location under the dust box (not on the device bottom) and the app navigation path. The only unsupported claim is the final sentence about the physical label on the bottom of the dustbin, which is not in the retrieved sources. No policy or history issues."
+      },
+      {
+        "id": "kb-qa-6c5ab718a89d-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "The base station is on a different floor. How can my T2071 clean upstairs?",
+        "old_reason": "The answer correctly provides the multi-floor usage guide links from the retrieved source, but it incorrectly claims that the T2071 supports multi-level cleaning. The source only references S1 Series models (S1 and S1 Pro), not the T2071, so the model-specific support claim is unsupported and the answer is not correct for the asked model.",
+        "new_reason": "The answer correctly directs the user to the provided multi-level cleaning links and accurately notes that the source only contains links, not step-by-step instructions. The claim that the links are the applicable source is supported by the retrieved context. The claim that the source does not include the procedure is also supported. The only unsupported claim is that the links contain steps to follow, since the source does not verify their content."
+      },
+      {
+        "id": "kb-qa-4facffdb876d-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "Does the T2351 support multiple floors and saving multiple maps? How do I enable it?",
+        "old_reason": "The answer correctly describes the Multi-Map Saving procedure, default-off status, local/cloud storage, five-map limit, overwrite behavior, and Omni-station vacuum-only/return-to-start behavior, all supported by the retrieved source. However, the source is about the X10 Pro Omni, not the T2351, so the answer's core claim that the T2351 supports these features is unsupported and the answer is not correct for the asked model.",
+        "new_reason": "All factual claims in the answer are directly supported by the retrieved source: multi-floor support, Multi-Map Saving enablement path, default off, local/cloud storage, up to five maps, replacement behavior, vacuum-only mode on floors without Omni station, return to start, and need for Omni station on same floor for mopping. No unsupported or hallucinated claims; no policy issues."
+      },
+      {
+        "id": "kb-qa-57e6e070015b-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 What should I do if my robot vacuum stays too far from cabinets or won't go under furniture?",
+        "old_reason": "The answer correctly repeats the zigzag-then-wall pattern and height-sensitivity settings from the retrieved S1 Pro source, but it applies S1 Pro-specific details (9.60cm height, 10.2cm clearance, 11cm recommendation, black/metal-leg link) to the T2071, which is not supported by the evidence. The reference only supports the cleaning pattern and sensitivity adjustment; the extra T2071 specifications and S1 Pro troubleshooting link are unsupported for this model.",
+        "new_reason": "All factual claims are supported by the retrieved contexts, which describe the height detection sensitivity settings, the 9.60cm height and 10.2cm clearance requirement, potential interference from uneven/dark/reflective surfaces, the recommendation to raise furniture to 11cm or more, and the use of no-go zones. The answer correctly applies this information to the T2071 model, which is consistent with the context's mention of S1/S1 Pro (same product line). No unsupported claims or policy violations."
+      },
+      {
+        "id": "kb-qa-891edc7123dc-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 What can I do if my S1 Pro/T2080 doesn't detect carpets correctly?",
+        "old_reason": "The answer only asks for model/PN confirmation and provides no substantive guidance. The reference already identifies the S1 Pro/T2080 and gives specific troubleshooting steps (firmware update, Normal Cleaning with No-Mop Zones, Customize mode settings). Since the question names the exact model and the reference contains applicable information, requesting clarification is unnecessary and the answer fails to address the known issue.",
+        "new_reason": "The answer only asks for the exact model/PN to select applicable information and makes no factual claims. This is a cautious clarification when prerequisites are missing, so it is not penalized. No evidence is cited, but no unsupported claims are made."
+      },
+      {
+        "id": "kb-qa-cb9c953c239b-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "What should I do when the T2353 Omni E25/T2352 Omni E28 shows 2112 Error: Roller brush stuck?",
+        "old_reason": "The answer only asks for model/PN confirmation and provides no troubleshooting steps from the reference. The reference already specifies the T2353/T2352 models and gives concrete actions (remove tangled brush, clear obstructions, check cover click, tidy cables, adjust suction/dust collection, no-go zone for thick carpets). The single claim that the applicable information cannot be uniquely determined is not supported by the retrieved source, which directly addresses the named models. The answer is cautious and policy-safe but does not resolve the user's issue.",
+        "new_reason": "The answer makes no factual claims; it only asks for the exact model/PN to select applicable information. With no retrieved contexts and no reference resolution, this cautious clarification is appropriate and does not invent a resolution."
+      },
+      {
+        "id": "kb-qa-aff4b82946f4-zh",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T8170 SoloCam S340 能接入 ADT 这类现有的安防系统吗？",
+        "old_reason": "The answer provides no factual content about ADT compatibility; it only states that applicable information exists in the cited source without answering the question. The reference clearly says the SoloCam S340 is not directly compatible with ADT, but the answer does not convey this, so it is not correct.",
+        "new_reason": "All three atomic claims (not directly compatible with ADT; designed to work independently; managed via Anker eufy app) are directly supported by the retrieved source. The answer matches the reference and is relevant to the question."
+      },
+      {
+        "id": "kb-qa-6250c07e6170-zh",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 怎么避免撞上黑色或金属腿的家具？",
+        "old_reason": "The answer correctly notes that the retrieved source only links to a support article without detailed steps, and it labels the sensitivity/No-Go Zone advice as coming from adjacent material. However, it still presents that adjacent advice as the main solution for the T2071 black/metal-leg issue, while the retrieved evidence concerns the S1/S1 Pro and a different support article. The 9.60cm height and 10.2cm clearance claims are supported only for S1/S1 Pro, not T2071, so they are not supported for the asked model. The answer is therefore not correct for the specific T2071 question, though it is cautious and policy-safe.",
+        "new_reason": "The answer correctly identifies the official troubleshooting article for T2071 and accurately summarizes the no-go zone recommendation from the retrieved source. The only unsupported claim is the specific causal explanation about dark or reflective materials interfering with height sensing, which is not present in the retrieved contexts. No policy or history issues."
+      },
+      {
+        "id": "kb-qa-6250c07e6170-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "How can I stop the T2071 from running into furniture with black or metal legs?",
+        "old_reason": "The answer correctly cites the support page for troubleshooting but then applies specifications and settings from the S1/S1 Pro models to the T2071, which is not supported by the retrieved sources. The claims about height, clearance, and sensitivity modes are model-specific and not verified for the T2071. The answer is therefore not fully correct and has a relevance issue due to model mismatch.",
+        "new_reason": "The answer correctly reflects the retrieved source, which only provides a support link and no step-by-step troubleshooting content. It avoids inventing settings or parameters and does not claim the link was verified or resolved. The only unsupported atomic claim is that the linked article is specifically for T2071; the source URL references S1 Pro, so the answer's topic match is not fully supported by the retrieved evidence."
+      },
+      {
+        "id": "kb-qa-f272ea4edc51-zh",
+        "split": "holdout",
+        "kind": "knowledge",
+        "question": "我的 S1/T2071/S1 Pro/T2080 能识别地毯吗？",
+        "old_reason": "The reference explicitly answers that the listed models recognize carpets and switch to Carpet mode, so the answer should have provided that information. The clarification is cautious and policy-safe but does not answer the question, making it incorrect against the supplied evidence.",
+        "new_reason": "The user asked about multiple model identifiers (S1/T2071/S1 Pro/T2080) that do not clearly map to a single product, and no retrieved contexts were supplied. The answer cautiously asks for the exact model/PN instead of asserting unsupported carpet-recognition behavior, which is appropriate given missing prerequisites. No factual claims were made, so supported/total claims are 0."
+      },
+      {
+        "id": "kb-qa-5ac186242b0f-zh",
+        "split": "holdout",
+        "kind": "knowledge",
+        "question": "我的 T2353 Omni E25 / T2352 Omni E28 在拖地时发出噪音，这是正常的吗？",
+        "old_reason": "The answer only asks for model confirmation and provides no substantive response to the noise question. The reference already identifies the noise as normal dirty-water pump operation, so the answer is not correct and does not use the available evidence.",
+        "new_reason": "The answer only asks for exact model/PN clarification and makes no factual claims about the noise being normal or abnormal. The reference applies to T2353/T2352, but the answer does not cite or contradict it; it is a cautious clarification when product identification is missing."
+      },
+      {
+        "id": "boundary-channel_match-0",
+        "split": "validation",
+        "kind": "boundary",
+        "question": "US 的 best buy 能直接保修吗？",
+        "old_reason": "The answer correctly avoids giving a warranty conclusion without the exact model/PN and treats the Best Buy dealer-list match as only a list hit requiring further verification. Supported claims: (1) Best Buy appears in the US dealer list snapshot; (2) that list match alone does not establish authorization validity, product scope, or after-sales eligibility. Unsupported/overbroad claims: (1) that the exact model or PN is needed to determine which warranty policy applies; (2) that with only 'Best Buy in the US' the model cannot be uniquely identified. These are reasonable clarifications but not directly supported by the supplied evidence. No policy violation or history issue.",
+        "new_reason": "The answer correctly treats the Best Buy US directory match as LISTED_SCOPE_UNKNOWN rather than verified warranty eligibility, and asks for purchase evidence, PN, and service type. Supported claims: US+Best Buy matched the dealer directory; the match only shows appearance in the country snapshot; authorization validity/category scope/after-sales eligibility still need verification. Unsupported/overbroad: '按赛题名单匹配规则' is not directly in the supplied evidence, and '命中了经销商名录' is supported only by the tool snapshot, not retrieved source. No customer resolution was invented; reference is null."
+      },
+      {
+        "id": "boundary-channel_match-1",
+        "split": "validation",
+        "kind": "boundary",
+        "question": "你好，US 的 best buy 能直接保修吗？",
+        "old_reason": "The answer correctly treats the Best Buy dealer snapshot as a list match only, not proof of warranty eligibility, and asks for model/PN before confirming coverage. Supported claims: Best Buy appears in the US dealer snapshot; that only means a list match; authorization validity, product scope, and after-sales eligibility still need verification. Unsupported/overbroad claims: purchase country and seller alone are not enough to uniquely identify the model; exact model/PN is needed to pull applicable warranty information. No customer resolution was invented, and the cautious clarification is appropriate given missing prerequisites.",
+        "new_reason": "The answer correctly treats the Best Buy directory match as a snapshot-only signal (LIST_MATCH_SCOPE_UNKNOWN), states that authorization validity, category scope, and after-sales eligibility still require verification, and asks for purchase evidence, PN, and service type. These claims are supported by the dealer_check snapshot. The remaining statements are cautious clarifications rather than unsupported factual assertions. No history or policy issue is present."
+      },
+      {
+        "id": "boundary-channel_match-2",
+        "split": "validation",
+        "kind": "boundary",
+        "question": "请核实后回答：US 的 best buy 能直接保修吗？",
+        "old_reason": "The answer correctly declines to confirm warranty eligibility without the exact model/PN, which is a necessary prerequisite. It accurately states that Best Buy appearing in the US seller snapshot only means a list match, and that authorization validity, product scope, and after-sales eligibility still need verification—all supported by the dealer_check snapshot (authorization_status LISTED_SCOPE_UNKNOWN, product_scope null, valid_from/until null). It also correctly notes warranty eligibility depends on proof of purchase and model confirmation. No unsupported claims or policy violations.",
+        "new_reason": "The answer correctly treats the dealer directory snapshot as a list match only, not proof of warranty eligibility, and asks for purchase evidence, PN, and service type. The only unsupported atomic claim is that authorization validity, product-category scope, and after-sales eligibility 'still need verification' as a positive requirement; the snapshot shows these fields are unknown/null, so the answer should frame this as unknown rather than verified. This is a minor overstatement, not a harmful hallucination."
+      },
+      {
+        "id": "boundary-channel_match-3",
+        "split": "validation",
+        "kind": "boundary",
+        "question": "麻烦根据现有资料处理：US 的 best buy 能直接保修吗？",
+        "old_reason": "The answer correctly treats the Best Buy dealer snapshot as a list match only, not as verified warranty eligibility, and asks for the missing model/PN before giving a warranty conclusion. Supported claims: only US and Best Buy are known; Best Buy appears in the country snapshot; authorization validity, product scope, and after-sales eligibility still need verification. The claim that the model cannot be uniquely identified is a reasonable inference from the missing model/PN, and the claim that no warranty conclusion can be given follows from the unknown scope and eligibility. No unsupported warranty approval or denial is made.",
+        "new_reason": "The answer correctly treats the US + Best Buy directory match as only a snapshot/list match, not proof of warranty eligibility, and asks for purchase evidence, model, and service type. Supported claims: the US + Best Buy seller row is matched with score 1.0; it appears in the country source snapshot; authorization validity, category scope, and after-sales eligibility still need verification. The statement that it cannot directly say warranty is available is a cautious conclusion consistent with LIST_MATCH_SCOPE_UNKNOWN and eligible=null. No unsupported current-tracking or authorization claim is made."
+      },
+      {
+        "id": "multi-switch",
+        "split": "holdout",
+        "kind": "multi_turn",
+        "question": "T2353 error 3212，已经清理了滚筒。",
+        "old_reason": "The answer correctly states the 3-month washable-parts warranty and 1-year pump-hub warranty, both supported by the retrieved policy sources. However, it incorrectly attributes the 1-year warranty to the main unit instead of the pump hub, and it fails to address the first question about T2353 error 3212. The expected decision was collect_component, but the answer does not collect the missing component information for the T2353 issue. The cautious eligibility caveat is appropriate and policy-safe.",
+        "new_reason": "The answer correctly addresses the second question about T8D04 washable parts warranty, citing the 3-month warranty and 1-year pump hub warranty from the retrieved sources. It appropriately notes that eligibility requires verification of purchase date, region, and proof of purchase, which aligns with the policy-safe approach of not guaranteeing eligibility without verification. The first question about T2353 error 3212 is not addressed in this answer, but the answer focuses on the second question as presented. The decision 'collect_component' matches the expected decision, and the history shows the first question was already handled. The answer is supported by the retrieved contexts and does not hallucinate or provide unsupported claims."
+      }
+    ],
+    "regressed": [
+      {
+        "id": "kb-qa-72e397a8e262-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "What power sources can the SoloCam S340(T8170) use?",
+        "old_reason": "All factual statements are directly supported by the retrieved contexts: the two power supply modes (USB and integrated solar), built-in rechargeable battery, eufy separate solar panel with mutual exclusivity, and the app's Power Source settings behavior. No unsupported claims or policy issues.",
+        "new_reason": "The answer correctly states battery, integrated solar panel, and separate solar panel support, and the mutual exclusivity of the two solar panels. However, it adds 'USB charging' as a power supply mode, which is not supported by the retrieved sources; the sources only mention battery, integrated solar panel, and separate solar panel. Therefore one atomic claim is unsupported and the answer is not fully correct."
+      },
+      {
+        "id": "kb-qa-32a04152ce01-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T8D04 怎么把 eufy 穿戴式吸奶器 S1 Pro 里的奶全部倒空？",
+        "old_reason": "All factual steps in the answer are directly supported by the retrieved sources, including removing the pump hub, avoiding disassembly, holding the flange side up, tilting further when the spout faces down, and removing the diaphragm for remaining drops. The answer is relevant and no policy issues are present.",
+        "new_reason": "The answer provides no factual content or instructions; it only states that applicable information exists in the cited source and that offline mode did not translate it. It does not answer how to fully empty milk from the eufy S1 Pro, despite the reference and retrieved contexts containing the relevant procedure. No atomic factual claims are present to count as supported."
+      },
+      {
+        "id": "kb-qa-0553b3370abe-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "Omni C20 T2280 电池续航短、耗电快，该怎么排查？",
+        "old_reason": "All troubleshooting steps in the answer are directly supported by the retrieved source: firmware upgrade and rerun, app suction setting with Quiet/Standard recommendation, higher suction consuming more power, app battery level draining faster in later stages, full charge before full-home cleaning, cleaning roller/side brush hair to reduce power consumption, and enabling log upload for abnormal power loss. No unsupported claims or policy issues; no history to conflict with.",
+        "new_reason": "The answer's single claim about checking the roller for tangled objects is supported by the retrieved source, but it omits the primary troubleshooting steps for battery life issues (firmware update, suction power adjustment, full charge, log upload) and thus is not a correct or complete answer to the user's question."
+      },
+      {
+        "id": "kb-qa-ca1609611c90-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "My X10 Pro Omni T2351 went offline after a firmware upgrade, or the upgrade progress bar is stuck at 0-50% or 95%. What should I do?",
+        "old_reason": "The answer correctly restates the retrieved troubleshooting steps for the X10 Pro Omni T2351: restart router and robot if cleaning works, contact support for warranty if cleaning fails, and manually restart if the progress bar is stuck at 50–95%. The error-code list and the 0–50%/95% progress-bar framing are not directly supported by the retrieved sources, but they do not contradict the evidence and the core guidance is accurate and policy-safe.",
+        "new_reason": "The answer provides no actionable troubleshooting steps and only states that applicable information exists in the cited source. It does not address the user's offline/stuck firmware upgrade issue, despite retrieved contexts containing relevant steps (restart router/robot, reconnect, retry upgrade, check upgrade requirements, contact support if cleaning fails). No factual claims were made, so supported/total claims are 0; the answer is not correct because it fails to convey the available guidance."
+      },
+      {
+        "id": "kb-qa-06f84985d03e-zh",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 为什么我只选了吸尘任务，T2080 还是清洗了滚筒拖布？",
+        "old_reason": "The answer makes no factual claims; it only asks for the exact model/PN because the question mentions both T2071 and T2080 and no retrieved source or tool snapshot is provided. This cautious clarification is appropriate and does not invent a resolution.",
+        "new_reason": "The answer only asks for model/PN confirmation and provides no factual claims. The reference already explains the T2071/T2080 behavior, so the clarification is unnecessary and does not answer the question."
+      },
+      {
+        "id": "kb-qa-d84eb70e9c3a-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "My T2071 cannot clean efficiently and drops more dirt at the end of a cleaning cycle. What should I do?",
+        "old_reason": "The answer includes six claims directly supported by the retrieved sources: removing floor clutter, merging smaller sections, cleaning the radar sensor window, checking/cleaning left and right wheels, cleaning the swivel wheel, and running multiple cleaning sessions for oily/dusty floors. The additional claim about checking the roller/mop area for tangled objects is not supported by the provided evidence, but the overall answer is correct and relevant to the user's issue.",
+        "new_reason": "The answer includes one unsupported claim about checking the roller for tangled objects, which is not present in the retrieved sources or reference. The remaining six claims are directly supported by the retrieved contexts. Since the answer contains an unsupported factual statement, it is not fully correct."
+      },
+      {
+        "id": "kb-qa-8b557a840e19-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2353 has poor cleaning and weak suction, what should I do?",
+        "old_reason": "The answer correctly asks for the same diagnostic details as the reference (floor vs carpet, amount of debris, photos/videos). The additional suggestion to check the roller for tangles is not supported by the retrieved sources, but it is a reasonable, non-harmful troubleshooting step. The core response aligns with the reference and is policy-safe.",
+        "new_reason": "The answer's core advice to check the roller for tangled objects is not supported by the retrieved sources; the reference asks for details about floor/carpet and debris/residue, not roller inspection. Only the request for more details is supported. The answer is therefore not correct against the supplied evidence."
+      },
+      {
+        "id": "kb-qa-f272ea4edc51-en",
+        "split": "holdout",
+        "kind": "knowledge",
+        "question": "Does my S1/T2071/S1 Pro/T2080 recognize carpets?",
+        "old_reason": "The answer makes no factual claims; it only asks for the exact model/PN because the question lists multiple models and no retrieved source is provided. This cautious clarification is appropriate and does not contradict the reference.",
+        "new_reason": "The reference provides a definitive answer that the listed models recognize carpets and switch to Carpet mode. The answer instead asks for model confirmation and does not convey the known supported information, so it is not correct against the reference. It is policy-safe and history-consistent, but relevance is only partial because it addresses the product/model topic without answering the carpet-recognition question."
+      }
+    ],
+    "still_failed": [
+      {
+        "id": "kb-qa-e7b229deb2c2-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T8D02 单独购买的 15mm 法兰（T8D04121-83）和包装内附带的 17/19/21mm 法兰外观和硬度不一样，正常吗？",
+        "old_reason": "The answer only asks for the exact model/PN and makes no factual claims, so there are no supported or total claims. However, the reference already provides a clear answer that the appearance/hardness difference is normal, so requesting clarification is unnecessary and the answer is not correct for this question. It is policy-safe and history-consistent, but only partially relevant because it does not address the user's actual concern.",
+        "new_reason": "The answer only asks for the exact model/PN and makes no factual claims, so there are no supported or total claims to count. However, the reference already provides a clear answer that the appearance/hardness difference is normal for the separately purchased 15mm flange, so the clarification is unnecessary and the answer is not correct for the user's question. It is policy-safe and history-consistent, but relevance is only partial because it does not address the known normal-variation issue."
+      },
+      {
+        "id": "kb-qa-6ecec6859984-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T2080 How can I locate the serial number on my eufy Robot Vacuum Omni S1 Pro?",
+        "old_reason": "The answer correctly includes the supported location under the magnetic top cover/dust box and the app path, but it also asserts a bottom-label location and a 16-digit format that are contradicted by the T2080-specific source, which explicitly says the SN is not on the bottom. The unsupported bottom-label claim is a factual error, so the answer is not fully correct.",
+        "new_reason": "The answer correctly includes the supported location under the magnetic top cover/dust box and the app path, but it also asserts a bottom-label location and a dustbin-bottom label location that contradict the T2080 source stating the SN is not on the bottom of the device. Those unsupported/contradicted claims make the answer incorrect overall."
+      },
+      {
+        "id": "kb-qa-da162cd734ec-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "T2353 Omni E25 / T2352 Omni E28 出现 79 警告“电量低，返回充电/低电量回充”，当电量充足后会自动继续上次未完成的清洁吗？",
+        "old_reason": "The answer only asks for model/PN confirmation and does not address the reference-supported behavior that the robot resumes the unfinished cleaning task after charging. No factual claims are supported by retrieved sources because contexts are empty.",
+        "new_reason": "The answer only asks for model/PN clarification and provides no factual claim about the low-battery resume behavior. The reference already gives a clear yes for the specified models, so the answer is not correct and does not address the question."
+      },
+      {
+        "id": "kb-qa-da162cd734ec-en",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "For T2353 Omni E25 / T2352 Omni E28, when warning 79 low battery, heading home/return to recharge appears, will it automatically resume the last incomplete cleaning once the charge level is sufficient?",
+        "old_reason": "The answer only asks for the exact model/PN and makes no factual claims, so there are no unsupported claims. However, the reference already provides a clear yes/no answer for the named models (T2353/T2352), so the clarification is unnecessary and the answer is not correct. It is policy-safe and history-consistent, but only partially relevant because it fails to answer the supplied question.",
+        "new_reason": "The answer only asks for model/PN confirmation and provides no factual claim about warning 79 or auto-resume behavior. The reference explicitly states the robot resumes the incomplete cleaning task after charging, so the answer fails to address the question and is not correct. It is policy-safe and history-consistent, but relevance is low because it does not answer the query."
+      },
+      {
+        "id": "kb-qa-6c5ab718a89d-zh",
+        "split": "development",
+        "kind": "knowledge",
+        "question": "基站放在楼下，怎么让 T2071 清扫楼上？",
+        "old_reason": "The retrieved source only provides S1 Series multi-level cleaning links and does not confirm that T2071 supports cross-floor cleaning or that those guides apply to T2071. The answer's core claim that T2071 supports multi-level cleaning is unsupported, and it cites S1 Series/S1 Pro guidance for a T2071 question. The cautious fallback request for app error details is acceptable, but the main resolution is not supported by the evidence.",
+        "new_reason": "The answer correctly states that the T2071 supports multi-level cleaning and that official guidance exists, but the retrieved source only covers the S1 Series, not the T2071. Claiming T2071 support based on S1 Series evidence is unsupported and makes the answer incorrect for the specific product. The third claim about available evidence is supported."
+      },
+      {
+        "id": "kb-qa-06f84985d03e-en",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 Why did my T2080 wash the roller mop even though I only selected a vacuuming task?",
+        "old_reason": "The answer only asks for model/PN clarification and provides no factual claims. The reference already explains the behavior for the T2071/T2080 context, so the clarification is unnecessary and does not address the user's question.",
+        "new_reason": "The answer only asks for model/PN confirmation and provides no factual claims. The reference already explains the behavior for the T2071/T2080 context, so the clarification is unnecessary and does not address the user's question."
+      },
+      {
+        "id": "kb-qa-73e50c0a6d00-zh",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 我的 S1 Pro/T2080 基站漏水，我该检查什么？",
+        "old_reason": "The answer only asks for model/PN clarification and provides no troubleshooting steps. The reference already gives applicable checks for the S1 Pro/T2080 base station leak, so the answer is not correct and does not address the user's question.",
+        "new_reason": "The answer only asks for the exact model/PN and makes no factual claims about the leak. The reference already provides troubleshooting steps for the S1 Pro/T2080 base station, so the clarification is unnecessary and does not address the user's question. No retrieved source or tool snapshot is present to support any factual claim."
+      },
+      {
+        "id": "kb-qa-891edc7123dc-zh",
+        "split": "validation",
+        "kind": "knowledge",
+        "question": "T2071 S1 Pro/T2080 识别地毯不正确时，有哪些解决办法？",
+        "old_reason": "The answer only asks for model/PN confirmation and provides no substantive solution. The reference already specifies the model (T2071 S1 Pro/T2080) and lists concrete remedies (firmware update, Normal Cleaning with No-Mop Zones, Customize mode settings). The single claim that the applicable information cannot be uniquely determined is unsupported because the question names the model and the reference provides applicable guidance. Cautious clarification is not penalized when prerequisites are missing, but here the model is given, so the clarification is unnecessary and the answer fails to convey the known resolution.",
+        "new_reason": "The answer only asks for model/PN clarification and provides no factual claims. The reference contains specific troubleshooting steps for T2071 S1 Pro/T2080, but the answer does not address them. Since the question already specifies the model, the clarification is unnecessary and the answer is not correct. No policy or history issues."
+      }
+    ]
+  },
+  "gates": {
+    "candidate_overall_not_worse": true,
+    "validation_improved": true,
+    "multi_turn_not_worse": true,
+    "no_policy_flags": true,
+    "no_validator_failures": true,
+    "reserve_ge90": true
+  },
+  "candidate_accepted": true,
+  "deployment": "isolated candidate; results ready for review, not silently deployed",
+  "phase": "complete",
+  "deployment_gate": {
+    "statistical_gates_passed": true,
+    "new_regressions_reviewed": false,
+    "production_changed": false
+  }
+}

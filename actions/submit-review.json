@@ -1,0 +1,26 @@
+{
+  "ActionType": "submitForReview",
+  "displayName": "提交人工复核",
+  "description": "把本地工单从待处理或等待客户状态推进到待复核，创建复核任务、建立关联，并记录本地事件和审计。",
+  "version": "1.0.0",
+  "parameters": {
+    "ticket": {"type": "ObjectReference", "objectType": "SupportTicket"},
+    "reason": {"type": "String", "minLength": 6, "maxLength": 1000}
+  },
+  "validation": [
+    {"rule": "ticket_exists", "errorMessage": "工单不存在"},
+    {"rule": "ticket_status_allowed", "allowed": ["OPEN", "WAITING_CUSTOMER"], "errorMessage": "工单当前状态不允许提交复核"},
+    {"rule": "no_open_review", "errorMessage": "工单已有待处理复核任务"}
+  ],
+  "rules": [
+    {"type": "modifyObject", "object": "ticket", "edits": {"workflow_status": "PENDING_REVIEW"}},
+    {"type": "createObject", "objectType": "ReviewTask", "status": "OPEN"},
+    {"type": "createLink", "linkType": "needs_review", "from": "ticket", "to": "createdReviewTask"},
+    {"type": "emitEvent", "eventType": "REVIEW_REQUESTED", "delivery": "local_outbox"}
+  ],
+  "permissions": {"roles": ["CustomerServiceAgent", "CustomerServiceSupervisor"], "purpose": "customer-service-review"},
+  "audit": true,
+  "execution": "registered submitForReview handler; rules are not arbitrary executable expressions",
+  "scope": "local_demo",
+  "limitations": "本地操作员演示，不是生产身份认证；创建本地复核任务，不执行真人转接、退款、换货或发信。"
+}

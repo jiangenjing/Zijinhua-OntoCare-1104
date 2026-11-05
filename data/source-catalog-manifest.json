@@ -1,0 +1,43 @@
+{
+  "counts": {
+    "tickets": 63,
+    "qa": 875,
+    "media": 11
+  },
+  "qa_visible": 872,
+  "qa_hidden": 3,
+  "source_sha256": "0279f939182e84526c05dfc5e1b5a694248ab5acfe4bec7ea4857f9504051f94",
+  "canonical_file": "黑客松智能服务赛题资料.xlsx",
+  "all_original_fields_preserved": true,
+  "pns": [
+    "T2070",
+    "T2071",
+    "T2080",
+    "T2280",
+    "T2292",
+    "T2351",
+    "T2352",
+    "T2353",
+    "T8123",
+    "T8124",
+    "T8130",
+    "T8162",
+    "T8170",
+    "T8171",
+    "T8172",
+    "T8173",
+    "T8D02",
+    "T8D03",
+    "T8D04"
+  ],
+  "scenes": [
+    "Shipping inquiry",
+    "Troubleshooting/Product usage"
+  ],
+  "qa_sheets": [
+    "eufy Robovacs Q&A",
+    "eufy Breast Pump Q&A"
+  ],
+  "raw_data_location": "local/service.sqlite and local/catalog-media only; excluded from Git",
+  "media_note": "All embedded media displayed in original form; anchor locations are source coordinates, not model-verified associations."
+}

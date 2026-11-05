@@ -1,0 +1,99 @@
+{
+  "version": "brief-rules-v1",
+  "rules": [
+    {
+      "id": "brief:reship",
+      "name": "未送达且客户未收货的补发建议",
+      "statement": "物流轨迹未显示送达，且客户表示未收到包裹，可以给客户补发。",
+      "source": {
+        "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+        "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+        "section": "一、业务SOP",
+        "location": "word/media/image1.jpeg",
+        "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+        "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+      },
+      "subjects": [
+        "Shipment",
+        "Order"
+      ],
+      "status": "IMPLEMENTED_RECOMMENDATION",
+      "scope": "COMPETITION_BRIEF_ONLY"
+    },
+    {
+      "id": "brief:delivered",
+      "name": "已送达包裹需复核",
+      "statement": "显示送达的包裹，一般情况下不再补发；一般不等于无例外。",
+      "source": {
+        "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+        "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+        "section": "一、业务SOP",
+        "location": "word/media/image1.jpeg",
+        "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+        "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+      },
+      "subjects": [
+        "Shipment"
+      ],
+      "status": "IMPLEMENTED_RECOMMENDATION",
+      "scope": "COMPETITION_BRIEF_ONLY"
+    },
+    {
+      "id": "brief:fault-replacement",
+      "name": "质保内排障无效的换货建议",
+      "statement": "完成对应故障排查后问题仍存在，可对质保期内产品进行换货处理。",
+      "source": {
+        "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+        "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+        "section": "一、业务SOP",
+        "location": "word/media/image1.jpeg",
+        "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+        "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+      },
+      "subjects": [
+        "ProductModel",
+        "CheckStep",
+        "OrderItem"
+      ],
+      "status": "IMPLEMENTED_RECOMMENDATION",
+      "scope": "COMPETITION_BRIEF_ONLY"
+    },
+    {
+      "id": "brief:required-materials",
+      "name": "售后材料核验",
+      "statement": "换货/退款需订单或购买凭证、发货地址、相关视频/图片；故障问题还需产品 SN。",
+      "source": {
+        "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+        "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+        "section": "一、业务SOP",
+        "location": "word/media/image1.jpeg",
+        "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+        "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+      },
+      "subjects": [
+        "SupportTicket",
+        "ExternalMaterial"
+      ],
+      "status": "IMPLEMENTED_RECOMMENDATION",
+      "scope": "COMPETITION_BRIEF_ONLY"
+    },
+    {
+      "id": "brief:dealer-match",
+      "name": "赛题授权销售方匹配",
+      "statement": "下单 country 精准匹配 + seller 模糊匹配为赛题授权经销商；数值阈值需工程定义。",
+      "source": {
+        "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+        "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+        "section": "三、经销商信息",
+        "location": "word/document.xml：三、经销商信息",
+        "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认"
+      },
+      "subjects": [
+        "Dealer",
+        "Country"
+      ],
+      "status": "IMPLEMENTED_MATCH_WITH_ENGINEERING_THRESHOLD",
+      "scope": "COMPETITION_BRIEF_ONLY"
+    }
+  ]
+}

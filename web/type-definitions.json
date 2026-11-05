@@ -1,0 +1,874 @@
+{
+  "schemaNote": "本项目本机运行的类型契约：原始对象只读；动作通过固定处理器执行类型、角色、任务范围与状态校验，保存本地事务、事件及审计。不是Palantir配置导出，不执行外部售后。",
+  "entries": [
+    {
+      "id": "object:ServiceTask",
+      "kind": "ObjectType",
+      "name": "ServiceTask",
+      "label": "服务任务",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ObjectType": "ServiceTask",
+        "displayName": "服务任务",
+        "primaryKey": "taskId",
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "enum",
+            "values": [
+              "NEW",
+              "IN_PROGRESS",
+              "WAITING_CUSTOMER",
+              "ESCALATED",
+              "RESOLVED"
+            ]
+          }
+        }
+      },
+      "references": [],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "classId": "ServiceTask",
+      "executionUrl": "/ontology/contracts#ServiceTask"
+    },
+    {
+      "id": "object:CheckObservation",
+      "kind": "ObjectType",
+      "name": "CheckObservation",
+      "label": "检查观察记录",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ObjectType": "CheckObservation",
+        "displayName": "检查观察记录",
+        "primaryKey": "observationId",
+        "properties": {
+          "observationId": {
+            "type": "string"
+          },
+          "result": {
+            "type": "enum",
+            "values": [
+              "RESOLVED",
+              "PERSISTS",
+              "INCONCLUSIVE",
+              "NOT_PERFORMED"
+            ]
+          },
+          "verificationStatus": {
+            "type": "enum",
+            "values": [
+              "REPORTED",
+              "VERIFIED",
+              "CONFLICT"
+            ]
+          },
+          "reportedAt": {
+            "type": "timestamp"
+          },
+          "procedureRevision": {
+            "type": "string"
+          }
+        }
+      },
+      "references": [],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "classId": "CheckObservation",
+      "executionUrl": "/ontology/contracts#CheckObservation"
+    },
+    {
+      "id": "object:ServiceRequest",
+      "kind": "ObjectType",
+      "name": "ServiceRequest",
+      "label": "售后服务申请",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ObjectType": "ServiceRequest",
+        "displayName": "售后服务申请",
+        "primaryKey": "requestId",
+        "properties": {
+          "requestId": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "enum",
+            "values": [
+              "MANUAL_REVIEW",
+              "REFUND",
+              "REPLACEMENT"
+            ]
+          },
+          "status": {
+            "type": "enum",
+            "values": [
+              "SUBMITTED",
+              "UNDER_REVIEW",
+              "REJECTED",
+              "COMPLETED"
+            ]
+          }
+        }
+      },
+      "references": [],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "classId": "ServiceRequest",
+      "executionUrl": "/ontology/contracts#ServiceRequest"
+    },
+    {
+      "id": "link:HAS_OBSERVATION",
+      "kind": "LinkType",
+      "name": "HAS_OBSERVATION",
+      "label": "任务记录检查",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "LinkType": "HAS_OBSERVATION",
+        "displayName": "任务记录检查",
+        "from": "ServiceTask",
+        "to": "CheckObservation",
+        "cardinality": "one-to-many"
+      },
+      "references": [
+        "object:ServiceTask",
+        "object:CheckObservation"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "relationId": "HAS_OBSERVATION",
+      "executionUrl": "/ontology/contracts#HAS_OBSERVATION"
+    },
+    {
+      "id": "link:REQUEST_HANDLES_TASK",
+      "kind": "LinkType",
+      "name": "REQUEST_HANDLES_TASK",
+      "label": "申请处理任务",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "LinkType": "REQUEST_HANDLES_TASK",
+        "displayName": "申请处理任务",
+        "from": "ServiceRequest",
+        "to": "ServiceTask",
+        "cardinality": "many-to-one"
+      },
+      "references": [
+        "object:ServiceRequest",
+        "object:ServiceTask"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "relationId": "REQUEST_HANDLES_TASK",
+      "executionUrl": "/ontology/contracts#REQUEST_HANDLES_TASK"
+    },
+    {
+      "id": "action:updateSessionCheckState",
+      "kind": "ActionType",
+      "name": "updateSessionCheckState",
+      "label": "记录会话检查状态",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ActionType": "updateSessionCheckState",
+        "displayName": "记录会话检查状态",
+        "parameters": {
+          "message": {
+            "type": "string"
+          },
+          "sessionId": {
+            "type": "string"
+          }
+        },
+        "implementation": "ontocare.type_contracts.execute（白名单处理器，不解释执行JSON表达式）",
+        "writes": [
+          "completed_actions",
+          "claims"
+        ],
+        "verification": "user_reported; not tool-verified",
+        "permissions": {
+          "roles": [
+            "CustomerServiceAgent",
+            "SupportAgent",
+            "CustomerServiceSupervisor"
+          ],
+          "purpose": "customer-service-review",
+          "scope": "server_identity_and_owned_task"
+        },
+        "audit": true
+      },
+      "references": [
+        "object:CheckStep",
+        "function:observed_actions"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [
+        "skill_state"
+      ],
+      "executionUrl": "/ontology/contracts#updateSessionCheckState"
+    },
+    {
+      "id": "action:recordCheckResult",
+      "kind": "ActionType",
+      "name": "recordCheckResult",
+      "label": "记录检查结果",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ActionType": "recordCheckResult",
+        "displayName": "记录检查结果",
+        "description": "追加用户明确报告的结果，不直接确认根因或审批售后。",
+        "parameters": {
+          "task": {
+            "type": "ObjectReference",
+            "objectType": "ServiceTask"
+          },
+          "step": {
+            "type": "ObjectReference",
+            "objectType": "CheckStep"
+          },
+          "result": {
+            "type": "enum",
+            "values": [
+              "RESOLVED",
+              "PERSISTS",
+              "INCONCLUSIVE",
+              "NOT_PERFORMED"
+            ]
+          },
+          "statement": {
+            "type": "string"
+          }
+        },
+        "validation": [
+          {
+            "rule": "canHandleTask(currentIdentity, task)",
+            "errorMessage": "没有处理该任务的权限"
+          },
+          {
+            "rule": "isApplicableCheck(step, task)",
+            "errorMessage": "检查不适用于当前产品上下文"
+          },
+          {
+            "rule": "hasExplicitReportedResult(statement, result)",
+            "errorMessage": "需要明确的检查结果"
+          }
+        ],
+        "rules": [
+          {
+            "type": "createObject",
+            "objectType": "CheckObservation",
+            "bind": "observation",
+            "values": {
+              "observationId": "serverGeneratedId()",
+              "result": "$result",
+              "verificationStatus": "REPORTED",
+              "reportedAt": "serverTime()",
+              "procedureRevision": "$step.revision"
+            }
+          },
+          {
+            "type": "createLink",
+            "linkType": "HAS_OBSERVATION",
+            "from": "$task",
+            "to": "$observation"
+          }
+        ],
+        "permissions": {
+          "roles": [
+            "CustomerServiceAgent",
+            "SupportAgent",
+            "CustomerServiceSupervisor"
+          ],
+          "purpose": "customer-service-review",
+          "scope": "server_identity_and_owned_task"
+        },
+        "audit": true,
+        "idempotency": "requestId",
+        "implementation": "ontocare.type_contracts.execute（白名单处理器，不解释执行JSON表达式）"
+      },
+      "references": [
+        "object:ServiceTask",
+        "object:CheckObservation",
+        "object:CheckStep",
+        "link:HAS_OBSERVATION"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "executionUrl": "/ontology/contracts#recordCheckResult"
+    },
+    {
+      "id": "action:submitManualReview",
+      "kind": "ActionType",
+      "name": "submitManualReview",
+      "label": "提交人工复核申请",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "ActionType": "submitManualReview",
+        "displayName": "提交人工复核申请",
+        "description": "登记复核请求，不批准退款或换货。",
+        "parameters": {
+          "task": {
+            "type": "ObjectReference",
+            "objectType": "ServiceTask"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "items": "EvidenceReference"
+          }
+        },
+        "validation": [
+          {
+            "rule": "canHandleTask(currentIdentity, task)",
+            "errorMessage": "没有处理该任务的权限"
+          },
+          {
+            "rule": "hasValidReason(reason)",
+            "errorMessage": "缺少复核原因"
+          },
+          {
+            "rule": "allEvidenceAccessible(currentIdentity, evidenceRefs)",
+            "errorMessage": "证据不可访问或不属于此任务"
+          },
+          {
+            "rule": "noActiveDuplicateReview(task)",
+            "errorMessage": "已有有效复核申请，返回原编号"
+          }
+        ],
+        "rules": [
+          {
+            "type": "createObject",
+            "objectType": "ServiceRequest",
+            "bind": "request",
+            "values": {
+              "requestId": "serverGeneratedId()",
+              "kind": "MANUAL_REVIEW",
+              "status": "SUBMITTED",
+              "executionMode": "LOCAL_REVIEW",
+              "submittedAt": "serverTime()"
+            }
+          },
+          {
+            "type": "createLink",
+            "linkType": "REQUEST_HANDLES_TASK",
+            "from": "$request",
+            "to": "$task"
+          }
+        ],
+        "permissions": {
+          "roles": [
+            "CustomerServiceAgent",
+            "SupportAgent",
+            "CustomerServiceSupervisor"
+          ],
+          "purpose": "customer-service-review",
+          "scope": "server_identity_and_owned_task"
+        },
+        "audit": true,
+        "idempotency": "requestId + activeReview(task)",
+        "implementation": "ontocare.type_contracts.execute（白名单处理器，不解释执行JSON表达式）"
+      },
+      "references": [
+        "object:ServiceTask",
+        "object:ServiceRequest",
+        "link:REQUEST_HANDLES_TASK"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "executionUrl": "/ontology/contracts#submitManualReview"
+    },
+    {
+      "id": "function:identifyProduct",
+      "kind": "FunctionType",
+      "name": "identifyProduct",
+      "label": "识别型号候选",
+      "status": "implemented",
+      "statusDetail": "已有 Python 逻辑；返回候选 PN 列表，未独立注册为平台 Function 服务。",
+      "definition": {
+        "FunctionType": "identifyProduct",
+        "parameters": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "returns": {
+          "type": "array",
+          "items": "PN string"
+        },
+        "readOnly": true,
+        "implementation": "Agent.identify(text)",
+        "logic": [
+          "匹配明确 PN",
+          "核对已收录别名",
+          "结合品类处理同名产品",
+          "保留多个候选"
+        ]
+      },
+      "references": [
+        "object:ProductModel"
+      ],
+      "examples": [
+        {
+          "recordKind": "design_example",
+          "input": {
+            "text": "S1 Pro"
+          },
+          "expectedBehavior": "保留多候选并追问品类；此例未运行"
+        }
+      ],
+      "source": [
+        "ontocare/agent.py: Agent.identify"
+      ],
+      "traceTools": []
+    },
+    {
+      "id": "function:observed_actions",
+      "kind": "FunctionType",
+      "name": "observed_actions",
+      "label": "识别已报告完成的检查",
+      "status": "implemented",
+      "statusDetail": "已有显式完成语句与否定语句匹配；识别结果不等于工具核验。",
+      "definition": {
+        "FunctionType": "observed_actions",
+        "parameters": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "returns": {
+          "type": "array",
+          "items": "check key"
+        },
+        "readOnly": true,
+        "implementation": "observed_actions(text)",
+        "limitations": "正则规则可能存在语言边界；不确认实际物理执行"
+      },
+      "references": [
+        "object:CheckStep"
+      ],
+      "examples": [
+        {
+          "recordKind": "design_example",
+          "input": {
+            "text": "已经重启"
+          },
+          "expectedOutput": [
+            "restart"
+          ],
+          "note": "示意输入输出，非调用记录"
+        }
+      ],
+      "source": [
+        "ontocare/agent.py: observed_actions"
+      ],
+      "traceTools": []
+    },
+    {
+      "id": "function:suggestNextCheck",
+      "kind": "FunctionType",
+      "name": "suggestNextCheck",
+      "label": "计算下一步检查",
+      "status": "implemented",
+      "statusDetail": "已接入本地类型契约运行时：输入校验、适用性/任务范围校验、持久化对象与关联及审计；不执行外部售后。",
+      "definition": {
+        "FunctionType": "suggestNextCheck",
+        "displayName": "计算下一步检查建议",
+        "parameters": {
+          "model": {
+            "type": "ObjectReference",
+            "objectType": "ProductModel"
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "completedChecks": {
+            "type": "array",
+            "items": "string"
+          }
+        },
+        "returns": {
+          "type": "object",
+          "properties": {
+            "nextCheck": "CheckStepReference | null",
+            "status": "SUGGEST_CHECK | NEED_CONTEXT | MANUAL_REVIEW",
+            "evidenceRefs": "EvidenceReference[]"
+          }
+        },
+        "readOnly": true,
+        "logic": [
+          "限定型号与可见知识",
+          "精确匹配错误码和支持检查关系",
+          "过滤本任务已报告完成的步骤",
+          "无新步骤则建议人工复核，不编造下一步"
+        ],
+        "currentImplementation": "ontocare.type_contracts.suggest_next_check；复用来源检查守卫，过滤已报告完成的步骤"
+      },
+      "references": [
+        "object:ProductModel",
+        "object:CheckStep",
+        "link:supports_step"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/type_contracts.py"
+      ],
+      "traceTools": [],
+      "executionUrl": "/ontology/contracts#suggestNextCheck"
+    },
+    {
+      "id": "function:resolve_semantics",
+      "kind": "FunctionType",
+      "name": "resolve_semantics",
+      "label": "解析本体关联",
+      "status": "implemented",
+      "statusDetail": "当前已有查询逻辑；调用记录仅显示脱敏摘要。",
+      "definition": {
+        "FunctionType": "resolve_semantics",
+        "parameters": {
+          "mentions": {
+            "type": "array",
+            "maxItems": 5
+          },
+          "context": {
+            "type": "string"
+          }
+        },
+        "returns": "semantic resolution results",
+        "readOnly": true,
+        "implementation": "SemanticLayer.resolve；MCP tools/call"
+      },
+      "references": [
+        "object:ProductModel",
+        "object:KnowledgeArticle"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/agent.py",
+        "ontocare/mcp.py"
+      ],
+      "traceTools": [
+        "resolve_semantics"
+      ]
+    },
+    {
+      "id": "function:search_evidence",
+      "kind": "FunctionType",
+      "name": "search_evidence",
+      "label": "检索适用证据",
+      "status": "implemented",
+      "statusDetail": "当前已有查询逻辑；调用记录仅显示脱敏摘要。",
+      "definition": {
+        "FunctionType": "search_evidence",
+        "parameters": {
+          "pn": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "returns": "source-scoped knowledge records",
+        "readOnly": true,
+        "implementation": "Retriever / Agent 侧调用；不是当前 MCP 端点工具"
+      },
+      "references": [
+        "object:KnowledgeArticle",
+        "object:Evidence"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/agent.py",
+        "ontology/versions/{version}/bundle.json"
+      ],
+      "traceTools": [
+        "search_evidence"
+      ]
+    },
+    {
+      "id": "function:lookup_order",
+      "kind": "FunctionType",
+      "name": "lookup_order",
+      "label": "查询本地订单",
+      "status": "implemented",
+      "statusDetail": "已接通本地业务投影与官方 SDK stdio MCP lookup_order；逐商品、包裹及金额原值可查，非实时物流。",
+      "definition": {
+        "FunctionType": "lookup_order",
+        "parameters": {
+          "order_number": {
+            "type": "string"
+          }
+        },
+        "returns": "found + snapshot + item summaries",
+        "readOnly": true,
+        "implementation": "OntologyService.lookup_order → business.order_detail；MCP lookup_order"
+      },
+      "references": [
+        "object:Order",
+        "object:OrderItem"
+      ],
+      "examples": [],
+      "source": [
+        "ontocare/agent.py",
+        "ontology/versions/{version}/bundle.json"
+      ],
+      "traceTools": [
+        "lookup_order"
+      ]
+    },
+    {
+      "id": "function:check_dealer",
+      "kind": "FunctionType",
+      "name": "check_dealer",
+      "label": "按国家核对销售方",
+      "description": "名录候选、授权范围缺口及 eligible=null",
+      "status": "implemented",
+      "statusDetail": "已接通本地工作台与 stdio MCP；结果基于资料快照。",
+      "definition": {
+        "FunctionType": "check_dealer",
+        "displayName": "按国家核对销售方",
+        "parameters": {
+          "country": "String",
+          "seller": "String"
+        },
+        "returns": "名录候选、授权范围缺口及 eligible=null",
+        "implementation": "OntologyService.check_dealer",
+        "readOnly": true,
+        "binding": "OntoCare Python，本项目契约；非 Palantir 导出格式"
+      },
+      "references": [
+        "object:Dealer",
+        "object:Country"
+      ],
+      "instanceIds": [],
+      "records": [],
+      "source": [
+        "ontocare/service_api.py: OntologyService.check_dealer",
+        "ontocare/service_mcp.py: check_dealer"
+      ],
+      "examples": [],
+      "traceTools": [
+        "check_dealer"
+      ]
+    },
+    {
+      "id": "function:plan_customer_service",
+      "kind": "FunctionType",
+      "name": "plan_customer_service",
+      "label": "客服证据与下一步规划",
+      "description": "意图、原文证据、缺失条件与下一步",
+      "status": "implemented",
+      "statusDetail": "已接通本地工作台与 stdio MCP；结果基于资料快照。",
+      "definition": {
+        "FunctionType": "plan_customer_service",
+        "displayName": "客服证据与下一步规划",
+        "parameters": {
+          "message": "String",
+          "pn": "String?",
+          "order_number": "String?",
+          "country": "String?",
+          "seller": "String?"
+        },
+        "returns": "意图、原文证据、缺失条件与下一步",
+        "implementation": "OntologyService.plan_customer_service",
+        "readOnly": true,
+        "binding": "OntoCare Python，本项目契约；非 Palantir 导出格式"
+      },
+      "references": [
+        "object:SupportTicket",
+        "object:KnowledgeArticle",
+        "object:Order"
+      ],
+      "instanceIds": [],
+      "records": [],
+      "source": [
+        "ontocare/service_api.py: OntologyService.plan_customer_service",
+        "ontocare/service_mcp.py: plan_customer_service"
+      ],
+      "examples": [],
+      "traceTools": [
+        "plan_customer_service"
+      ]
+    },
+    {
+      "id": "function:evaluate_service_decision",
+      "kind": "FunctionType",
+      "name": "evaluate_service_decision",
+      "label": "赛题 SOP 服务决策",
+      "status": "implemented",
+      "statusDetail": "已实现有来源的条件评估；未知保留 UNKNOWN，输出仅为建议，不执行退款/换货/补发。",
+      "source": [
+        "data/competition-rules.json",
+        "ontocare/decisions.py",
+        "ontocare/service_mcp.py"
+      ],
+      "definition": {
+        "FunctionType": "evaluate_service_decision",
+        "parameters": {
+          "facts": "ServiceDecisionFacts",
+          "as_of": "Date?"
+        },
+        "returns": "outcome / checks / missing_facts / source_rules / can_execute=false",
+        "readOnly": true,
+        "implementation": "decisions.evaluate",
+        "contractScope": "本项目契约，非 Palantir 导出格式"
+      },
+      "references": [
+        "object:ServiceRule",
+        "object:OrderItem",
+        "object:Shipment",
+        "action:submitForReview"
+      ],
+      "examples": [],
+      "traceTools": [
+        "evaluate_service_decision"
+      ]
+    }
+  ],
+  "articles": {
+    "ObjectType": {
+      "title": "ObjectType：带语义的对象声明",
+      "summary": "定义现实业务里有什么，以及每类对象有哪些可以解释、检索和核验的属性。",
+      "sections": [
+        {
+          "title": "从客服问题出发",
+          "text": "客户说“我的 E25 报错”，先识别产品型号；有购买记录时再关联订单与订单项。型号不是具体设备，订单项也不等于一台设备。按业务身份划分对象，避免把一行 Excel 当成一个实体。"
+        },
+        {
+          "title": "字段必须有业务含义",
+          "text": "对象声明包含名称、语义说明、主键及属性。PN 用于型号身份；别名用于消歧；枚举用于表达有限合法状态。源文件、工作表、行号保留在证据和映射中，不挤进每个业务对象的主体。"
+        },
+        {
+          "title": "类型与实例",
+          "text": "ProductModel 是类型，pn:T2353 是实例；CheckObservation 是建议新增的记录类型，demo: 开头只用于解释，没有持久化到真实实例集合。"
+        },
+        {
+          "title": "当前实现与边界",
+          "text": "原始资料对象保持只读；ServiceTask、CheckObservation、ServiceRequest 已接入本机事务存储，实际实例及字段可在工作台查看，不把讲解示例计入业务数量。"
+        },
+        {
+          "title": "面试表达",
+          "text": "我先用产品、订单、问题和检查结果这些业务概念定义对象身份，再把多来源数据映射进来；结构与来源映射分开管理。"
+        }
+      ]
+    },
+    "LinkType": {
+      "title": "LinkType：让关系成为一等公民",
+      "summary": "声明对象之间的业务含义、方向、基数与关联依据，使关联可以被人和 Agent 正确浏览。",
+      "sections": [
+        {
+          "title": "从 ID 匹配到业务语义",
+          "text": "两个字段相等只是建立关系的证据之一。references_order 表示工单提及订单，不代表客户身份核验通过；applies_to 表示型号有适用知识，不代表全品类均适用。"
+        },
+        {
+          "title": "独立声明关系",
+          "text": "LinkType 定义 from、to、cardinality 和 description。Link 是某两个实例的一条具体关系，当前每条边还带 basis，说明原生关系或匹配依据。类图按真实边聚合，实例图显示具体关联。"
+        },
+        {
+          "title": "关系属性的边界",
+          "text": "basis 是当前管理投影的边属性，不表示底层平台自动提供独立链接权限。若关系有数量、有效期和独立生命周期，可以建成业务关联对象；不要假定任何图或本体平台都支持任意边属性。"
+        },
+        {
+          "title": "当前实现与边界",
+          "text": "来源关系按明确字段连接；HAS_OBSERVATION、REQUEST_HANDLES_TASK 等由实际动作事务创建，记录两端对象和动作审计依据，未知归属不强行连接。"
+        },
+        {
+          "title": "面试表达",
+          "text": "我不仅保存起终点，还保存这条关系到底表示什么、适用什么范围、凭什么连线；未确认的关系保留待核查。"
+        }
+      ]
+    },
+    "ActionType": {
+      "title": "ActionType：可执行的行为契约",
+      "summary": "把一次业务变更需要什么、允许谁做、会改什么、如何追溯表达为明确契约。",
+      "sections": [
+        {
+          "title": "先确定业务变更",
+          "text": "记录一次检查结果、提交一次复核申请是有意义的操作；任意 setStatus 不是业务契约。Action 参数引用对象，提交前核验适用性、权限和状态；不让模型直接指定最终资格结论。"
+        },
+        {
+          "title": "五项核心定义",
+          "text": "parameters 定义输入；validation 定义前置条件；rules 定义对象与关系编辑；permissions 定义允许主体及作用范围；audit 定义追溯要求。这里是项目解释性语法，不是 Palantir 官方配置。"
+        },
+        {
+          "title": "从建议到真实办理",
+          "text": "建议检查不代表已经检查；创建申请不代表审批通过；审批通过不代表外部退款成功。记录检查结果应追加观察；提交复核应返回编号，正式完成依赖受信回执。"
+        },
+        {
+          "title": "当前实现与边界",
+          "text": "createServiceTask、recordCheckResult、updateSessionCheckState、submitManualReview 已注册固定本机处理器。执行前校验角色、用途、任务范围、步骤适用性和幂等键，保存真实对象、关系、事件及审计。不是任意JSON表达式执行器，不连接正式售后。"
+        },
+        {
+          "title": "事务与外部副作用",
+          "text": "原子性必须由实际存储和执行器保证；外部退款、通知与 Webhook 不因写在同一 JSON 就自动加入同一事务。需处理幂等、重复申请和失败回执。"
+        },
+        {
+          "title": "面试表达",
+          "text": "我的目标是让模型选择受约束业务动作，后端复核条件并记录结果；当前已实现本地状态跟踪，完整业务 Action 网关仍是待接入能力。"
+        }
+      ]
+    },
+    "FunctionType": {
+      "title": "Function type：复杂逻辑的代码下沉",
+      "summary": "承载型号消歧、知识检索、完成识别和下一步计算；Action 管变更契约，Function 管具体怎么算。",
+      "sections": [
+        {
+          "title": "为什么需要 Function",
+          "text": "声明可以说明输入输出和约束，但候选型号识别、两跳关联检索、否定句识别和检查过滤仍需算法。把逻辑放在明确的函数入口，才能复用与独立验证。"
+        },
+        {
+          "title": "输入输出与副作用",
+          "text": "identifyProduct 返回候选 PN 列表；observed_actions 返回已报告完成的检查键；lookup_order 返回本地快照。readOnly 只描述这些示例的边界，不代表所有平台 Function 都禁止编辑。"
+        },
+        {
+          "title": "与 Action 的协作",
+          "text": "Function 建议下一项检查，客户提供结果后由 Action 记录业务事实。Function 返回 UNKNOWN 或多候选时，应追问或复核，不能把未知压成 false。"
+        },
+        {
+          "title": "当前实现与边界",
+          "text": "已注册11个本机只读函数，可在执行台输入参数并查看输出与调用记录。suggestNextCheck 已独立实现；advanceServiceCase 是现有客服动作调用的写函数，不能从只读入口绕过业务校验。"
+        },
+        {
+          "title": "面试表达",
+          "text": "我把模糊理解和计算放在函数中，将业务变更交给明确契约；这样更容易定位错误是在识别、检索、判断还是执行阶段。"
+        }
+      ]
+    }
+  }
+}

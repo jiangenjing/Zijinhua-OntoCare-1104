@@ -1,0 +1,312 @@
+{
+  "protocol": {
+    "case_ids": [
+      "kb-736af02802b028:zh",
+      "kb-736af02802b028:en",
+      "kb-14a87c6fcfc9a3:zh",
+      "kb-14a87c6fcfc9a3:en",
+      "kb-aa26e0cc037149:zh",
+      "kb-aa26e0cc037149:en",
+      "kb-4d6bdc911562c4:zh",
+      "kb-4d6bdc911562c4:en",
+      "kb-698e4d1ba6fa31:zh",
+      "kb-698e4d1ba6fa31:en",
+      "kb-34c42a3a43d549:zh",
+      "kb-34c42a3a43d549:en",
+      "multi-restart",
+      "multi-roller",
+      "order-Anker013",
+      "order-Anker008",
+      "boundary-unknown_model-2",
+      "boundary-unknown_code-2"
+    ],
+    "case_sha256": "0eac8a1c5387766e78617fa5b96ccd5235c8d471495ca5c84990128e543a420a",
+    "cases_per_ablation": 18,
+    "repeats": 1,
+    "no_skill": "variant=no_skill AND empty Skill markdown in isolated prompt root; system format and hard business safety checks retained",
+    "no_ontology": "built-in variant removes scope/graph/ontology tools together; not an isolated BFS-only causal ablation",
+    "comparison": "same cases from after repeat1; seen validation; no model or test-set tuning"
+  },
+  "full": {
+    "scenarios": 18,
+    "passed": 18,
+    "task_pass_rate": 1.0,
+    "model_completed": 18,
+    "judge_completed": 18,
+    "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+    "mean_judge_score": 10.0,
+    "dimension_means": {
+      "factual_model_accuracy": 2.0,
+      "evidence_support": 2.0,
+      "steps_and_history": 2.0,
+      "business_boundaries": 2.0,
+      "bilingual_clarity": 2.0
+    },
+    "http_latency": {
+      "samples": 20,
+      "mean_ms": 5925.7934729488625,
+      "p50_ms": 5425.191437003377,
+      "p99_ms": 13482.199671935225,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "graph_latency": {
+      "samples": 20,
+      "mean_ms": 0.31525000000000003,
+      "p50_ms": 0.35550000000000004,
+      "p99_ms": 0.63786,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "retrieval_latency": {
+      "samples": 20,
+      "mean_ms": 12.296499999999998,
+      "p50_ms": 13.883,
+      "p99_ms": 19.69316,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "inference_tokens": {
+      "prompt_tokens": 116916,
+      "completion_tokens": 11392,
+      "total_tokens": 128308
+    },
+    "judge_tokens": {
+      "prompt_tokens": 23821,
+      "completion_tokens": 7058,
+      "total_tokens": 30879
+    },
+    "money_cost": null,
+    "money_reason": "No verified gateway prices",
+    "retrieval_on_knowledge": {
+      "samples": 12,
+      "source_families": 6,
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "family_bootstrap_hit_at_1_95_interval": [
+        1.0,
+        1.0
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "zh": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    },
+    "bad_case_attribution": {}
+  },
+  "no_skill": {
+    "scenarios": 18,
+    "passed": 16,
+    "task_pass_rate": 0.8888888888888888,
+    "model_completed": 18,
+    "judge_completed": 18,
+    "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+    "mean_judge_score": 10.0,
+    "dimension_means": {
+      "factual_model_accuracy": 2.0,
+      "evidence_support": 2.0,
+      "steps_and_history": 2.0,
+      "business_boundaries": 2.0,
+      "bilingual_clarity": 2.0
+    },
+    "http_latency": {
+      "samples": 20,
+      "mean_ms": 5568.921447850153,
+      "p50_ms": 5283.03481250623,
+      "p99_ms": 8840.535560472345,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "graph_latency": {
+      "samples": 20,
+      "mean_ms": 0.29964999999999997,
+      "p50_ms": 0.359,
+      "p99_ms": 0.66084,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "retrieval_latency": {
+      "samples": 20,
+      "mean_ms": 15.20175,
+      "p50_ms": 15.030999999999999,
+      "p99_ms": 45.046129999999984,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "inference_tokens": {
+      "prompt_tokens": 104534,
+      "completion_tokens": 10639,
+      "total_tokens": 115173
+    },
+    "judge_tokens": {
+      "prompt_tokens": 23470,
+      "completion_tokens": 7013,
+      "total_tokens": 30483
+    },
+    "money_cost": null,
+    "money_reason": "No verified gateway prices",
+    "retrieval_on_knowledge": {
+      "samples": 12,
+      "source_families": 6,
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "family_bootstrap_hit_at_1_95_interval": [
+        1.0,
+        1.0
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "zh": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    },
+    "bad_case_attribution": {
+      "none": 2
+    }
+  },
+  "no_ontology": {
+    "scenarios": 18,
+    "passed": 18,
+    "task_pass_rate": 1.0,
+    "model_completed": 18,
+    "judge_completed": 18,
+    "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+    "mean_judge_score": 10.0,
+    "dimension_means": {
+      "factual_model_accuracy": 2.0,
+      "evidence_support": 2.0,
+      "steps_and_history": 2.0,
+      "business_boundaries": 2.0,
+      "bilingual_clarity": 2.0
+    },
+    "http_latency": {
+      "samples": 20,
+      "mean_ms": 6924.303227150085,
+      "p50_ms": 6081.59108399559,
+      "p99_ms": 12966.929450477033,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "graph_latency": {
+      "samples": 20,
+      "mean_ms": 0.0,
+      "p50_ms": 0.0,
+      "p99_ms": 0.0,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "retrieval_latency": {
+      "samples": 20,
+      "mean_ms": 1657.75175,
+      "p50_ms": 1540.8795,
+      "p99_ms": 6856.656269999996,
+      "p99_note": "descriptive percentile; unstable for small samples"
+    },
+    "inference_tokens": {
+      "prompt_tokens": 83024,
+      "completion_tokens": 11224,
+      "total_tokens": 94248
+    },
+    "judge_tokens": {
+      "prompt_tokens": 21819,
+      "completion_tokens": 7103,
+      "total_tokens": 28922
+    },
+    "money_cost": null,
+    "money_reason": "No verified gateway prices",
+    "retrieval_on_knowledge": {
+      "samples": 12,
+      "source_families": 6,
+      "hit_at_1": 1.0,
+      "hit_at_3": 1.0,
+      "hit_at_5": 1.0,
+      "recall_at_1": 1.0,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "family_bootstrap_hit_at_1_95_interval": [
+        1.0,
+        1.0
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        },
+        "zh": {
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 1.0,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    },
+    "bad_case_attribution": {}
+  },
+  "judge_program_disagreements": [
+    {
+      "id": "multi-restart",
+      "arm": "no_skill",
+      "llm_score": 10,
+      "llm_task_satisfied": true,
+      "raw_llm_attribution": "none",
+      "expected_decision": "manual_review",
+      "actual_decision": "answer",
+      "failure_reason_zh": "内容评分达标，但应进入人工核查建议状态，实际返回普通回答；流程条件不通过。manual_review也不等于已真实转接。"
+    },
+    {
+      "id": "multi-roller",
+      "arm": "no_skill",
+      "llm_score": 10,
+      "llm_task_satisfied": true,
+      "raw_llm_attribution": "none",
+      "expected_decision": "manual_review",
+      "actual_decision": "answer",
+      "failure_reason_zh": "内容评分达标，但应进入人工核查建议状态，实际返回普通回答；流程条件不通过。manual_review也不等于已真实转接。"
+    }
+  ]
+}

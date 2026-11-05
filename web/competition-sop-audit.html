@@ -1,0 +1,64 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OntoCare · 赛题SOP核查</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;font:15px/1.8 system-ui;color:#24334a;background:#f6f8fc}article{background:white;border:1px solid #dde5ef;border-radius:18px;padding:30px}h1{font-size:27px}img{width:100%;background:white}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.9 system-ui}a{color:#5274c1}.status{padding:15px;background:#fff3db;border-radius:12px;color:#8b5c11}nav{display:flex;gap:22px;margin-bottom:25px}</style><nav><a href="/ontology/manager#topology">← 本体工作台</a><a href="/service#assistant">智能客服</a><a href="/static/competition-sop-audit.md" download>下载核查报告</a><a href="/static/competition-sop-audit.json" download>下载检查证据</a></nav><p><a href="/static/customer-sop-delivery.md">查看当前本地工作流说明 ↗</a></p><article><h1>赛题业务SOP符合性核查</h1><p class="status">此页为旧v2版本历史审计。当前5120已接入本地流程执行；仍非外部人工接单或真实售后。问答通过率不能替代流程验收。</p><details><summary>查看原始Word中的业务SOP图</summary><img src="/static/competition-sop-reference.jpeg" alt="原始赛题SOP流程图"></details><pre># 5120智能客服赛题SOP符合性核查
+
+结论：当前版本部分符合，尚未完整实现赛题业务流程闭环。核查对象为5120实际部署的experience-v2-stream548，并非仅检查主目录最新代码。依据为本地原始《【黑客松】Anekr智能客服赛题（业务资料）》及其中SOP原图；飞书页面本次无法访问，不能断言与在线最新内容完全一致。
+
+## 按原图逐节点对照
+
+| 原图要求 | 当前实现 | 判断 |
+|---|---|---|
+| 意图识别 | 产品、排障、物流、售后关键词路由 | 部分实现；未覆盖完整多意图/服务边界流程 |
+| 服务边界外转人工 | 有回复限制及独立本地复核工具 | 未接入完整客服转人工分支；不能把一句“请人工核查”当成已转接 |
+| 检索知识并生成回复 | 按型号检索、重排、两跳图搜索、来源引用、模型回复校验 | 已实现相关能力；不代表每条回复完全正确 |
+| 问题已解决→结束并发送满意度调查 | 有用户主动提交的本机反馈 | 部分实现；没有会话解决状态与自动触发调查闭环，也不实际发送调查 |
+| 未解决→确认是否进入换货/退款；不同意继续排障 | 记录部分已做检查、给出售后建议 | 未建成明确的用户确认状态及持久工作流循环 |
+| 物流未送达且客户未收货→补发；送达一般不补发 | 决策函数支持两条规则，但聊天调用把delivery_status固定为UNKNOWN，未传入customer_received | 规则函数存在，聊天未贯通该分支；物流快照不是实时核验，客户陈述也应单独记录而非丢失 |
+| 对应排障完成仍故障，且质保内→换货处理 | 决策函数支持；聊天只尝试传质保日期，没有传排障完成/问题仍存在等事实 | 部分实现，不能依此声称完成换货流程 |
+| 订单查不到→核实购买商家→授权经销商分支 | 直接给country/seller时会查目录 | 没有从订单未命中自动推进到商家核实及后续流程 |
+| 质保期外→告知过保并婉拒售后 | 返回OUT_OF_WARRANTY_REVIEW，交人工复核 | 与赛题图不一致；当前采用了更保守的复核分支，不能说逐节点照做 |
+| 非授权→引导联系购买商家售后 | 目录无匹配时返回未命中，弱匹配返回待复核 | 无完整固定分支，不能声称已按赛题引导完成 |
+| 换货/退款收集凭证、地址、图片/视频；故障另需SN | 规则和Prompt列出清单 | 部分实现；没有在当前用户界面形成上传、材料对象关联、核验状态及持续补齐的完整链路 |
+| 工具接收换货/退款建单信息，最终设置人工节点 | submitForReview只接受已有SupportTicket引用和reason，且客服没有调用它；MCP默认只读 | 关键缺口：缺结构化换货/退款申请工具、在线新工单关联及人工队列回执 |
+
+## 经销商规则并非完全同口径
+
+原文是country精准匹配+seller模糊匹配，命中授权，否则非授权。当前代码：
+
+- country先去空白、转大写，另有GB→UK、SA→KSA、AE→UAE映射，实际是规范化后精准匹配，并非原字符串精准。
+- seller先规范化后精确匹配，否则相似度至少0.90，且与第二候选相差至少0.10；0.72仅用于筛选候选。
+- 弱匹配/多个近似候选保留NEEDS_REVIEW，没有全都归为非授权。这是额外工程策略，原文没有给出这些数字。
+- 授权目录判定与保修/换货资格是两件事。eligible为空不等于目录没有匹配；当前competition_authorization字段可表示赛题名单命中。
+
+因此，经销商信息确实已接入，但“严格按赛题二分类且接通后续分支”尚未全部完成。
+
+## 数据覆盖与真实业务能力应分开
+
+已核对订单投影：16个订单、24个商品行。订单号、SKU/描述、数量、购买日期、质保到期、收货地址、状态、原行金额、承运商、物流单号和发货日期均有保留。地址保留在内部，客户接口隐藏；存在字段不等于已核实材料。金额粒度不明时保留原值，没有擅自相加。
+
+来源统计：客诉63条、扫地机Q&amp;A593条、吸奶器Q&amp;A282条、经销商原始336行。附件有记录/部分本地材料不等于所有外链视频、截图都已下载、识别并核验；也不等于当前聊天支持客户提交新材料。
+
+按当前PN投影，E25/E28/X10/S1 Pro扫地机可明确归属38条，S1 Pro吸奶器12条，另有4条PN未明确、9条属于其他型号。这个统计基于现有映射，并不证明原始资料缺少案例；它说明还不能直接宣布赛题“指定APP40+IOT10、分意图”的验收已全部完成。需要核对原始产品列、未解析记录、附件和三类意图，建立对应验收清单。
+
+## 实际探针与证据
+
+本次用5120真实HTTP接口跑了3个offline代码路径探针，不把它们称作LLM回答质量评测：
+
+1. 已送达但客户称未收货：聊天的服务判断仍为NEED_INFORMATION，delivery_confirmed和customer_received都是UNKNOWN，无动作回执。
+2. 客户明确主机、完成排查仍故障并申请换货：代码决策为collect_component，服务判断中的排查完成/问题仍在均UNKNOWN，无动作回执。型号缺少购买信息仍可追问，但客户已经明确的信息不应丢失。
+3. US+best buy保修咨询：调用check_dealer，路由collect_purchase_evidence，证明目录核验与该路由确已接入；不证明售后已批准。
+
+另对当前冻结版本的决策函数、经销商匹配、订单字段和Action参数做了只读检查。证据见competition-sop-audit.json。本轮没有创建真实售后申请或伪造人工队列回执。
+
+## 意图建模的一个具体缺口
+
+当前决策schema把shipping、fault、refund作为互斥intent，但故障是问题类型，退款是诉求，两者可能同时存在。refund分支没有独立故障原因字段，SN要求只在intent=fault时检查，因此不能完整表达“因故障申请退款也需要SN”。建议将issueType与requestedRemedy拆开，材料要求基于两者共同判断。
+
+## 优先补齐顺序
+
+1. 用持久Case状态连接“服务边界→解决确认→售后同意→订单/质保/渠道→材料补齐→申请提交→人工待办→结束/反馈”。客户陈述、快照事实、独立核验分别记录。
+2. 将对话中的排障结果、是否仍故障、是否收到包裹传入决策；物流最新状态没有接口时保持待人工核验，但不能忽略客户已提供的陈述。
+3. 增加独立的换货/退款/补发申请对象和受控Action，参数包含商品/订单引用、申请类型、原因、SN、材料引用与待核验清单；输出本地待人工处理的申请号与真实保存回执。无需假装已调用安克真实订单系统。
+4. 明确赛题模式的country匹配与seller模糊阈值、非授权及过保分支，保留与生产保守复核策略的差别。
+5. 新增逐分支、多轮、材料补齐、重复提交、状态转换及工具落库的业务验收，再跑原548题检查回答回归。
+
+本轮只完成核查、证据保存和界面事实标注，没有修改客服决策/Prompt/Skill，因此未把历史525/548冒充业务SOP通过率。
+</pre></article></html>

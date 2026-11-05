@@ -1,0 +1,1054 @@
+{
+  "schema_version": "service-sop-v1",
+  "version": "competition-sop-v1",
+  "process_id": "sop:process:competition-v1",
+  "label": "安克赛题客服业务SOP",
+  "record_kind": "process_definition_not_case_history",
+  "execution_status": "partially_connected",
+  "implementation_checked_at": "2026-11-03",
+  "source": {
+    "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+    "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+    "section": "一、业务SOP",
+    "location": "word/media/image1.jpeg",
+    "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+    "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+  },
+  "schema": {
+    "objectTypes": [
+      {
+        "id": "ServiceProcess",
+        "label": "客服业务流程",
+        "description": "赛题 SOP 的版本化流程定义，不是一次已完成的客户服务记录。",
+        "primaryKey": "node.id",
+        "properties": {
+          "definition_version": {
+            "type": "string|null",
+            "description": "流程定义版本"
+          },
+          "execution_status": {
+            "type": "string|null",
+            "description": "运行接入状态"
+          },
+          "source": {
+            "type": "object",
+            "description": "赛题来源"
+          }
+        }
+      },
+      {
+        "id": "SOPStep",
+        "label": "SOP流程节点",
+        "description": "输入、处理、判断和终点定义；节点存在不表示业务已执行。",
+        "primaryKey": "node.id",
+        "properties": {
+          "kind": {
+            "type": "string|null",
+            "description": "节点种类"
+          },
+          "instruction": {
+            "type": "string|null",
+            "description": "业务含义"
+          },
+          "runtime_status": {
+            "type": "string|null",
+            "description": "当前运行接入状态"
+          },
+          "runtime_note": {
+            "type": "string|null",
+            "description": "接入缺口说明"
+          },
+          "source": {
+            "type": "object",
+            "description": "来源"
+          },
+          "record_kind": {
+            "type": "string|null",
+            "description": "定义记录类型"
+          },
+          "position": {
+            "type": "array",
+            "description": "仅用于地图布局"
+          }
+        }
+      },
+      {
+        "id": "RequiredMaterial",
+        "label": "售后材料要求",
+        "description": "所需材料的定义，不代表材料已收到或核验。",
+        "primaryKey": "node.id",
+        "properties": {
+          "required_for": {
+            "type": "array",
+            "description": "适用申请类型"
+          },
+          "condition": {
+            "type": "string|null",
+            "description": "适用条件"
+          },
+          "receipt_status": {
+            "type": "string|null",
+            "description": "材料接收状态（定义无实例状态）"
+          },
+          "verification_status": {
+            "type": "string|null",
+            "description": "核验状态（定义无实例状态）"
+          },
+          "source": {
+            "type": "object",
+            "description": "规则来源"
+          }
+        }
+      },
+      {
+        "id": "SOPAction",
+        "label": "SOP动作声明",
+        "description": "预期售后动作及执行边界，未注册动作不能被当作已可执行的 ActionType。",
+        "primaryKey": "node.id",
+        "properties": {
+          "action_type": {
+            "type": "string|null",
+            "description": "动作标识"
+          },
+          "runtime_status": {
+            "type": "string|null",
+            "description": "动作接入状态"
+          },
+          "execution_scope": {
+            "type": "string|null",
+            "description": "执行边界"
+          },
+          "handler": {
+            "type": "string|null",
+            "description": "已有处理器（若有）"
+          },
+          "source": {
+            "type": "object",
+            "description": "来源"
+          }
+        }
+      },
+      {
+        "id": "SOPDataBinding",
+        "label": "SOP数据绑定",
+        "description": "流程所需的对象类与属性；示例关联只用于溯源，不是某个工单的执行轨迹。",
+        "primaryKey": "node.id",
+        "properties": {
+          "object_type": {
+            "type": "string|null",
+            "description": "业务对象类"
+          },
+          "fields_used": {
+            "type": "array",
+            "description": "读取字段"
+          },
+          "binding_kind": {
+            "type": "string|null",
+            "description": "类型与字段绑定声明"
+          },
+          "source": {
+            "type": "object",
+            "description": "绑定依据"
+          }
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "process_has_step",
+        "label": "包含流程节点",
+        "source": "ServiceProcess",
+        "target": "SOPStep",
+        "cardinality": "1:N",
+        "rule": "同一版本流程明确声明的步骤，不表示已处理工单"
+      },
+      {
+        "id": "sop_next_step",
+        "label": "条件流转",
+        "source": "SOPStep",
+        "target": "SOPStep",
+        "cardinality": "N:N",
+        "rule": "按来源声明分支条件；本体定义不是自动执行回执"
+      },
+      {
+        "id": "sop_based_on_rule",
+        "label": "SOP规则依据",
+        "source": "*",
+        "target": "ServiceRule",
+        "cardinality": "N:N",
+        "rule": "显式关联赛题原图或正文的规则"
+      },
+      {
+        "id": "sop_requires_material",
+        "label": "需要材料",
+        "source": "SOPStep",
+        "target": "RequiredMaterial",
+        "cardinality": "N:N",
+        "rule": "条件满足后收集对应材料，存在要求不代表已收到"
+      },
+      {
+        "id": "sop_proposes_action",
+        "label": "声明后续动作",
+        "source": "SOPStep",
+        "target": "SOPAction",
+        "cardinality": "N:N",
+        "rule": "流程声明期望动作；具体是否可执行以处理器与权限为准"
+      },
+      {
+        "id": "sop_uses_data",
+        "label": "使用业务数据",
+        "source": "SOPStep",
+        "target": "SOPDataBinding",
+        "cardinality": "N:N",
+        "rule": "声明需要读取的对象与字段"
+      },
+      {
+        "id": "sop_binding_example",
+        "label": "数据绑定示例",
+        "source": "SOPDataBinding",
+        "target": "*",
+        "cardinality": "N:N",
+        "rule": "来自当前可见记录的类型示例，不代表该记录通过了资格或流程判断"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "id": "sop:step:query",
+      "label": "客户提问",
+      "kind": "input",
+      "position": [
+        110,
+        85
+      ],
+      "instruction": "接收客户问题及其陈述。",
+      "runtime_status": "connected",
+      "runtime_note": "已有聊天入口和请求记录。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [
+        "ticket",
+        "product"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:intent",
+      "label": "识别咨询意图",
+      "kind": "activity",
+      "position": [
+        345,
+        85
+      ],
+      "instruction": "识别物流、产品咨询、故障和售后意图。",
+      "runtime_status": "partial",
+      "runtime_note": "当前以规则识别为主，多意图与业务状态仍需衔接。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:boundary",
+      "label": "是否在服务范围",
+      "kind": "decision",
+      "position": [
+        580,
+        85
+      ],
+      "instruction": "服务范围内进入知识处理；范围外按原图转人工。",
+      "runtime_status": "not_connected",
+      "runtime_note": "越界问题尚未形成独立的人工路由。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:retrieve",
+      "label": "检索知识并回复",
+      "kind": "activity",
+      "position": [
+        815,
+        85
+      ],
+      "instruction": "按型号与适用条件检索真实知识，再生成回复。",
+      "runtime_status": "connected",
+      "runtime_note": "已有型号过滤、证据检索、受限图查询和回复校验。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [
+        "product",
+        "knowledge"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:resolved",
+      "label": "问题是否已解决",
+      "kind": "decision",
+      "position": [
+        1050,
+        85
+      ],
+      "instruction": "根据客户反馈判断解决与否；已解决进入结案和满意度调查。",
+      "runtime_status": "not_connected",
+      "runtime_note": "自然语言已解决尚未驱动会话结案。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:pending",
+      "label": "资料不足待核查",
+      "kind": "activity",
+      "position": [
+        110,
+        245
+      ],
+      "instruction": "缺失或冲突条件保留待核查；不得将客户陈述标为工具核验。",
+      "runtime_status": "partial",
+      "runtime_note": "已有部分追问；完整的陈述、证据和核验状态尚未接入。",
+      "origin": "engineering_guard",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:human",
+      "label": "人工待处理",
+      "kind": "terminal",
+      "position": [
+        580,
+        245
+      ],
+      "instruction": "需要人工处理的请求进入待办；没有人工接单回执时不能声称转接成功。",
+      "runtime_status": "partial",
+      "runtime_note": "已有通用本地复核工具；客服申请信息包和自动衔接仍未完成。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": [
+        "manual-review"
+      ]
+    },
+    {
+      "id": "sop:step:close",
+      "label": "结案与满意度调查",
+      "kind": "terminal",
+      "position": [
+        815,
+        245
+      ],
+      "instruction": "客户确认解决后结束该次处理，并邀请满意度反馈。",
+      "runtime_status": "partial",
+      "runtime_note": "已有自愿反馈组件，没有完整的会话结案状态。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": [
+        "close-survey"
+      ]
+    },
+    {
+      "id": "sop:step:merchant",
+      "label": "联系购买商家售后",
+      "kind": "terminal",
+      "position": [
+        110,
+        415
+      ],
+      "instruction": "按赛题原图：非授权经销渠道引导联系购买商家售后。",
+      "runtime_status": "not_connected",
+      "runtime_note": "名单不匹配后的商家售后分支尚未接入；不将其泛化为全球拒绝政策。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:authorized",
+      "label": "是否授权经销商",
+      "kind": "decision",
+      "position": [
+        345,
+        415
+      ],
+      "instruction": "下单国家精准匹配、卖家名称模糊匹配；有歧义时待核查。",
+      "runtime_status": "partial",
+      "runtime_note": "已实现国家限定匹配；阈值为工程定义，后续路由未完整接入。",
+      "origin": "sop_diagram",
+      "rule_ids": [
+        "brief:dealer-match"
+      ],
+      "bindings": [
+        "dealer",
+        "country"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:seller",
+      "label": "核实购买商家",
+      "kind": "activity",
+      "position": [
+        580,
+        415
+      ],
+      "instruction": "订单查不到时核实购买国家和凭证上的商家名称。",
+      "runtime_status": "partial",
+      "runtime_note": "已有渠道查询；订单未命中到商家核查的自动衔接仍需补齐。",
+      "origin": "sop_diagram",
+      "rule_ids": [
+        "brief:dealer-match"
+      ],
+      "bindings": [
+        "dealer",
+        "country"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:warranty",
+      "label": "订单与质保判断",
+      "kind": "decision",
+      "position": [
+        815,
+        415
+      ],
+      "instruction": "区分订单查不到、质保期内与质保期外；多商品先确认目标商品。",
+      "runtime_status": "partial",
+      "runtime_note": "可读取订单与质保日期；目标商品选择与后续分支仍未完整接通。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [
+        "order",
+        "item"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:consent",
+      "label": "是否进入售后流程",
+      "kind": "decision",
+      "position": [
+        1050,
+        415
+      ],
+      "instruction": "未解决时确认是否进入换货或退款流程；否则继续知识协助。",
+      "runtime_status": "not_connected",
+      "runtime_note": "尚无完整的申请意愿和流程状态衔接。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:delivered",
+      "label": "已送达争议复核",
+      "kind": "activity",
+      "position": [
+        110,
+        610
+      ],
+      "instruction": "显示送达的包裹一般不再补发；争议保留人工复核，不把一般解释为绝对无例外。",
+      "runtime_status": "partial",
+      "runtime_note": "规则函数可判断；客服传入物流条件尚不完整。",
+      "origin": "sop_note_1",
+      "rule_ids": [
+        "brief:delivered"
+      ],
+      "bindings": [
+        "shipment"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:shipping",
+      "label": "物流与收货条件",
+      "kind": "decision",
+      "position": [
+        345,
+        610
+      ],
+      "instruction": "判断目标包裹是否未送达，以及客户是否表示未收到。",
+      "runtime_status": "partial",
+      "runtime_note": "已有包裹记录，但客服决策入口将物流设为 UNKNOWN，未完整接入未收货陈述。",
+      "origin": "sop_note_1",
+      "rule_ids": [
+        "brief:reship",
+        "brief:delivered"
+      ],
+      "bindings": [
+        "shipment",
+        "item"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:materials",
+      "label": "收集并核验材料",
+      "kind": "activity",
+      "position": [
+        815,
+        610
+      ],
+      "instruction": "换货或退款收集订单／购买凭证、寄送地址、图片／视频；故障还需产品SN。",
+      "runtime_status": "partial",
+      "runtime_note": "有材料清单，未形成统一的接收与核验记录；备齐的客户陈述不等于已核验。",
+      "origin": "sop_note_3",
+      "rule_ids": [
+        "brief:required-materials",
+        "brief:fault-replacement"
+      ],
+      "bindings": [
+        "order",
+        "item",
+        "external"
+      ],
+      "materials": [
+        "proof",
+        "address",
+        "media",
+        "sn"
+      ],
+      "actions": []
+    },
+    {
+      "id": "sop:step:expired",
+      "label": "告知过保与处理边界",
+      "kind": "terminal",
+      "position": [
+        1050,
+        815
+      ],
+      "instruction": "原图为告知过保并婉拒售后；保留例外审核时须明确区分。",
+      "runtime_status": "partial",
+      "runtime_note": "当前返回过保待复核，与赛题原图的婉拒分支尚不一致。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [
+        "item"
+      ],
+      "materials": [],
+      "actions": []
+    },
+    {
+      "id": "sop:step:reship",
+      "label": "补发申请建议",
+      "kind": "activity",
+      "position": [
+        345,
+        815
+      ],
+      "instruction": "未送达且客户表示未收货时可提出补发；申请不等于补发已执行。",
+      "runtime_status": "partial",
+      "runtime_note": "规则可生成建议，客服完整条件接入及申请落库尚未完成。",
+      "origin": "sop_note_1",
+      "rule_ids": [
+        "brief:reship"
+      ],
+      "bindings": [],
+      "materials": [],
+      "actions": [
+        "reship"
+      ]
+    },
+    {
+      "id": "sop:step:request",
+      "label": "寄修／补单申请",
+      "kind": "activity",
+      "position": [
+        815,
+        815
+      ],
+      "instruction": "保留原图寄修／补单节点；按服务类型组装换货或退款申请，再交人工处理。",
+      "runtime_status": "not_connected",
+      "runtime_note": "未接通结构化申请对象、申请编号与人工处理回执。",
+      "origin": "sop_diagram",
+      "rule_ids": [],
+      "bindings": [],
+      "materials": [],
+      "actions": [
+        "replacement",
+        "refund"
+      ]
+    },
+    {
+      "id": "sop:step:fault-readiness",
+      "label": "故障换货前置核查",
+      "kind": "decision",
+      "position": [
+        1050,
+        610
+      ],
+      "instruction": "故障换货须同时确认适用排障完成、问题仍在及目标商品质保期内；故障退款也需SN，不将问题类型和申请诉求混为一项。",
+      "runtime_status": "partial",
+      "runtime_note": "决策函数支持部分前提检查，但聊天事实传递和完整流程未接通。",
+      "origin": "sop_note_2",
+      "rule_ids": [
+        "brief:fault-replacement",
+        "brief:required-materials"
+      ],
+      "bindings": [
+        "item",
+        "ticket"
+      ],
+      "materials": [
+        "sn"
+      ],
+      "actions": []
+    }
+  ],
+  "transitions": [
+    {
+      "id": "sop:flow:01",
+      "source": "sop:step:query",
+      "target": "sop:step:intent",
+      "condition": "收到问题",
+      "origin": "sop_diagram",
+      "display_label": "输入"
+    },
+    {
+      "id": "sop:flow:02",
+      "source": "sop:step:intent",
+      "target": "sop:step:boundary",
+      "condition": "完成意图识别",
+      "origin": "sop_diagram",
+      "display_label": "识别完成"
+    },
+    {
+      "id": "sop:flow:03",
+      "source": "sop:step:boundary",
+      "target": "sop:step:retrieve",
+      "condition": "服务范围内",
+      "origin": "sop_diagram",
+      "display_label": "范围内"
+    },
+    {
+      "id": "sop:flow:04",
+      "source": "sop:step:boundary",
+      "target": "sop:step:human",
+      "condition": "服务范围外",
+      "origin": "sop_diagram",
+      "display_label": "范围外"
+    },
+    {
+      "id": "sop:flow:05",
+      "source": "sop:step:retrieve",
+      "target": "sop:step:resolved",
+      "condition": "回复后确认结果",
+      "origin": "sop_diagram",
+      "display_label": "确认结果"
+    },
+    {
+      "id": "sop:flow:06",
+      "source": "sop:step:resolved",
+      "target": "sop:step:close",
+      "condition": "客户确认已解决",
+      "origin": "sop_diagram",
+      "display_label": "已解决"
+    },
+    {
+      "id": "sop:flow:07",
+      "source": "sop:step:resolved",
+      "target": "sop:step:consent",
+      "condition": "问题未解决",
+      "origin": "sop_diagram",
+      "display_label": "未解决"
+    },
+    {
+      "id": "sop:flow:08",
+      "source": "sop:step:consent",
+      "target": "sop:step:retrieve",
+      "condition": "暂不进入售后",
+      "origin": "sop_diagram",
+      "display_label": "不进入"
+    },
+    {
+      "id": "sop:flow:09",
+      "source": "sop:step:consent",
+      "target": "sop:step:warranty",
+      "condition": "同意进入售后",
+      "origin": "sop_diagram",
+      "display_label": "进入售后"
+    },
+    {
+      "id": "sop:flow:10",
+      "source": "sop:step:warranty",
+      "target": "sop:step:seller",
+      "condition": "订单查不到",
+      "origin": "sop_diagram",
+      "display_label": "查不到"
+    },
+    {
+      "id": "sop:flow:11",
+      "source": "sop:step:warranty",
+      "target": "sop:step:materials",
+      "condition": "非故障申请：质保内，仍须核实适用政策",
+      "origin": "sop_note_3",
+      "display_label": "非故障"
+    },
+    {
+      "id": "sop:flow:12",
+      "source": "sop:step:warranty",
+      "target": "sop:step:expired",
+      "condition": "目标商品在质保期外",
+      "origin": "sop_diagram",
+      "display_label": "过保"
+    },
+    {
+      "id": "sop:flow:13",
+      "source": "sop:step:seller",
+      "target": "sop:step:authorized",
+      "condition": "取得国家与商家信息",
+      "origin": "sop_diagram",
+      "display_label": "核查商家"
+    },
+    {
+      "id": "sop:flow:14",
+      "source": "sop:step:authorized",
+      "target": "sop:step:materials",
+      "condition": "按赛题规则匹配授权渠道",
+      "origin": "sop_note_3",
+      "display_label": "授权"
+    },
+    {
+      "id": "sop:flow:15",
+      "source": "sop:step:authorized",
+      "target": "sop:step:merchant",
+      "condition": "按赛题规则判为非授权渠道",
+      "origin": "sop_diagram",
+      "display_label": "非授权"
+    },
+    {
+      "id": "sop:flow:16",
+      "source": "sop:step:materials",
+      "target": "sop:step:request",
+      "condition": "按申请类型核验所需材料",
+      "origin": "sop_note_3",
+      "display_label": "材料就绪"
+    },
+    {
+      "id": "sop:flow:17",
+      "source": "sop:step:request",
+      "target": "sop:step:human",
+      "condition": "申请待人工审核",
+      "origin": "tool_requirement",
+      "display_label": "待人工"
+    },
+    {
+      "id": "sop:flow:18",
+      "source": "sop:step:boundary",
+      "target": "sop:step:shipping",
+      "condition": "物流咨询：核对包裹条件",
+      "origin": "sop_note_1",
+      "display_label": "物流分支"
+    },
+    {
+      "id": "sop:flow:19",
+      "source": "sop:step:shipping",
+      "target": "sop:step:reship",
+      "condition": "未送达且客户表示未收到",
+      "origin": "sop_note_1",
+      "display_label": "符合补发"
+    },
+    {
+      "id": "sop:flow:20",
+      "source": "sop:step:shipping",
+      "target": "sop:step:delivered",
+      "condition": "物流显示送达",
+      "origin": "sop_note_1",
+      "display_label": "已送达"
+    },
+    {
+      "id": "sop:flow:21",
+      "source": "sop:step:delivered",
+      "target": "sop:step:human",
+      "condition": "送达争议需要复核",
+      "origin": "sop_note_1",
+      "display_label": "有争议"
+    },
+    {
+      "id": "sop:flow:22",
+      "source": "sop:step:reship",
+      "target": "sop:step:human",
+      "condition": "补发申请待人工处理",
+      "origin": "engineering_guard",
+      "display_label": "待人工"
+    },
+    {
+      "id": "sop:flow:23",
+      "source": "sop:step:boundary",
+      "target": "sop:step:pending",
+      "condition": "条件缺失或冲突，先待核查",
+      "origin": "engineering_guard",
+      "display_label": "待核查"
+    },
+    {
+      "id": "sop:flow:24",
+      "source": "sop:step:warranty",
+      "target": "sop:step:pending",
+      "condition": "条件缺失或冲突，先待核查",
+      "origin": "engineering_guard",
+      "display_label": "待核查"
+    },
+    {
+      "id": "sop:flow:25",
+      "source": "sop:step:authorized",
+      "target": "sop:step:pending",
+      "condition": "条件缺失或冲突，先待核查",
+      "origin": "engineering_guard",
+      "display_label": "待核查"
+    },
+    {
+      "id": "sop:flow:26",
+      "source": "sop:step:materials",
+      "target": "sop:step:pending",
+      "condition": "条件缺失或冲突，先待核查",
+      "origin": "sop_note_3",
+      "display_label": "待核查"
+    },
+    {
+      "id": "sop:flow:27",
+      "source": "sop:step:shipping",
+      "target": "sop:step:pending",
+      "condition": "条件缺失或冲突，先待核查",
+      "origin": "engineering_guard",
+      "display_label": "待核查"
+    },
+    {
+      "id": "sop:flow:28",
+      "source": "sop:step:pending",
+      "target": "sop:step:intent",
+      "condition": "客户补充信息后重新判断",
+      "origin": "engineering_guard",
+      "display_label": "补充后"
+    },
+    {
+      "id": "sop:t:fault-gate",
+      "source": "sop:step:warranty",
+      "target": "sop:step:fault-readiness",
+      "condition": "故障换货：目标商品质保期内",
+      "origin": "sop_note_2",
+      "display_label": "故障换货"
+    },
+    {
+      "id": "sop:t:fault-ready",
+      "source": "sop:step:fault-readiness",
+      "target": "sop:step:materials",
+      "condition": "适用排障已完成，问题仍存在",
+      "origin": "sop_note_2",
+      "display_label": "排障无效"
+    },
+    {
+      "id": "sop:t:fault-retry",
+      "source": "sop:step:fault-readiness",
+      "target": "sop:step:retrieve",
+      "condition": "尚未完成适用排障",
+      "origin": "engineering_guard",
+      "display_label": "继续排障"
+    },
+    {
+      "id": "sop:t:fault-unknown",
+      "source": "sop:step:fault-readiness",
+      "target": "sop:step:pending",
+      "condition": "排障、故障持续或质保事实不明",
+      "origin": "engineering_guard",
+      "display_label": "待核查"
+    }
+  ],
+  "materials": [
+    {
+      "id": "proof",
+      "label": "订单／购买凭证",
+      "required_for": [
+        "replacement",
+        "refund"
+      ],
+      "condition": "换货或退款"
+    },
+    {
+      "id": "address",
+      "label": "寄送地址",
+      "required_for": [
+        "replacement",
+        "refund"
+      ],
+      "condition": "换货或退款，通过安全渠道收集"
+    },
+    {
+      "id": "media",
+      "label": "相关图片／视频证明",
+      "required_for": [
+        "replacement",
+        "refund"
+      ],
+      "condition": "换货或退款"
+    },
+    {
+      "id": "sn",
+      "label": "产品序列号 SN",
+      "required_for": [
+        "replacement",
+        "refund"
+      ],
+      "condition": "故障问题需要；不能要求所有物流咨询提供SN"
+    }
+  ],
+  "actions": [
+    {
+      "id": "reship",
+      "label": "提交补发申请",
+      "action_type": "reship_request",
+      "runtime_status": "not_connected",
+      "execution_scope": "仅声明；未注册补发执行器",
+      "handler": null
+    },
+    {
+      "id": "replacement",
+      "label": "提交换货申请",
+      "action_type": "replacement_request",
+      "runtime_status": "not_connected",
+      "execution_scope": "仅声明；未注册换货申请处理器",
+      "handler": null
+    },
+    {
+      "id": "refund",
+      "label": "提交退款申请",
+      "action_type": "refund_request",
+      "runtime_status": "not_connected",
+      "execution_scope": "仅声明；未注册退款申请处理器",
+      "handler": null
+    },
+    {
+      "id": "manual-review",
+      "label": "提交本地人工复核",
+      "action_type": "submitForReview",
+      "runtime_status": "local_tool_only",
+      "execution_scope": "本地复核事务可用；客服未自动调用，不代表外部人工接单",
+      "handler": "ontocare.actions.execute"
+    },
+    {
+      "id": "close-survey",
+      "label": "结案与邀请满意度反馈",
+      "action_type": "close_and_survey",
+      "runtime_status": "partial",
+      "execution_scope": "只有自愿反馈组件；无完整结案状态",
+      "handler": null
+    }
+  ],
+  "bindings": [
+    {
+      "id": "ticket",
+      "object_type": "SupportTicket",
+      "label": "工单信息",
+      "fields_used": [
+        "text",
+        "scene",
+        "pn",
+        "sku",
+        "order_number"
+      ]
+    },
+    {
+      "id": "product",
+      "object_type": "ProductModel",
+      "label": "产品与型号",
+      "fields_used": [
+        "name",
+        "aliases"
+      ]
+    },
+    {
+      "id": "knowledge",
+      "object_type": "KnowledgeArticle",
+      "label": "适用知识与原文",
+      "fields_used": [
+        "title",
+        "content",
+        "pns",
+        "visible",
+        "source"
+      ]
+    },
+    {
+      "id": "order",
+      "object_type": "Order",
+      "label": "购买订单",
+      "fields_used": [
+        "order_number",
+        "status",
+        "source_rows"
+      ]
+    },
+    {
+      "id": "item",
+      "object_type": "OrderItem",
+      "label": "目标商品与质保",
+      "fields_used": [
+        "sku",
+        "quantity",
+        "warranty_end",
+        "fulfillment_status",
+        "amount_raw"
+      ]
+    },
+    {
+      "id": "shipment",
+      "object_type": "Shipment",
+      "label": "目标包裹",
+      "fields_used": [
+        "tracking_number",
+        "carrier",
+        "status",
+        "source_status",
+        "contents_verified"
+      ]
+    },
+    {
+      "id": "dealer",
+      "object_type": "Dealer",
+      "label": "销售方名录",
+      "fields_used": [
+        "country",
+        "seller"
+      ]
+    },
+    {
+      "id": "country",
+      "object_type": "Country",
+      "label": "购买国家",
+      "fields_used": [
+        "source_code"
+      ]
+    },
+    {
+      "id": "external",
+      "object_type": "ExternalMaterial",
+      "label": "附件与外部材料",
+      "fields_used": [
+        "fetch_status",
+        "understanding_status",
+        "source"
+      ]
+    }
+  ],
+  "notice": "此图是版本化流程定义与数据绑定，不是客户工单执行记录。实线为赛题原图／说明的流程，虚线为明确标注的工程待核查补充。节点接入状态以本轮代码核查为准。"
+}

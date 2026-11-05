@@ -1,0 +1,718 @@
+{
+  "status": "原始资料、gold、Judge五维和通过阈值保留；所有候选与回归同时展示。独立验收未通过，不上传。",
+  "sources": {
+    "articles": 26,
+    "article_status": {
+      "text_available": 22,
+      "video_only": 4
+    },
+    "link_status": {
+      "scoped_text": 86,
+      "video_only": 6,
+      "scope_pending": 2
+    }
+  },
+  "judge": {
+    "cases": 18,
+    "agreement_rate": 0.8888888888888888,
+    "pending_adjudication": 2
+  },
+  "history": [
+    {
+      "id": "reference",
+      "name": "官方正文＋条件Prompt",
+      "metrics": {
+        "scenarios": 72,
+        "passed": 71,
+        "task_pass_rate": 0.9861111111111112,
+        "model_completed": 72,
+        "turns": 74,
+        "model_completed_turns": 74,
+        "pass_by_kind": {
+          "knowledge": {
+            "passed": 59,
+            "planned": 60
+          },
+          "boundary": {
+            "passed": 5,
+            "planned": 5
+          },
+          "business": {
+            "passed": 5,
+            "planned": 5
+          },
+          "multi_turn": {
+            "passed": 2,
+            "planned": 2
+          }
+        },
+        "tool_invocations": {
+          "resolve_semantics": 129,
+          "skill_state": 66,
+          "search_evidence": 66,
+          "graph_search": 65,
+          "evaluate_service_decision": 8,
+          "lookup_order": 5,
+          "check_dealer": 1
+        },
+        "judge_completed": 72,
+        "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+        "mean_judge_score": 9.902777777777779,
+        "dimension_means": {
+          "factual_model_accuracy": 1.9583333333333333,
+          "evidence_support": 1.9722222222222223,
+          "steps_and_history": 1.9722222222222223,
+          "business_boundaries": 2.0,
+          "bilingual_clarity": 2.0
+        },
+        "http_latency": {
+          "samples": 74,
+          "mean_ms": 6754.708423486885,
+          "p50_ms": 6406.518542004051,
+          "p99_ms": 14567.483818071914,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "graph_latency": {
+          "samples": 65,
+          "mean_ms": 0.4610307692307692,
+          "p50_ms": 0.424,
+          "p99_ms": 1.7884399999999983,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "retrieval_latency": {
+          "samples": 66,
+          "mean_ms": 13.562454545454544,
+          "p50_ms": 12.632000000000001,
+          "p99_ms": 25.75749999999992,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "inference_tokens": {
+          "prompt_tokens": 530280,
+          "completion_tokens": 53056,
+          "total_tokens": 583336
+        },
+        "judge_tokens": {
+          "prompt_tokens": 120175,
+          "completion_tokens": 28969,
+          "total_tokens": 149144
+        },
+        "money_cost": null,
+        "money_reason": "No verified gateway prices",
+        "retrieval_on_knowledge": {
+          "samples": 60,
+          "source_families": 30,
+          "hit_at_1": 0.9333333333333333,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.9333333333333333,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9666666666666667,
+          "family_bootstrap_hit_at_1_95_interval": [
+            0.8333333333333334,
+            1.0
+          ],
+          "by_language": {
+            "en": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            },
+            "zh": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            }
+          },
+          "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+        },
+        "bad_case_attribution": {
+          "context": 1
+        }
+      },
+      "faithfulness": {
+        "parent": 0.9150432900432901,
+        "reference": 0.8918650793650794
+      },
+      "decision": "拒绝：忠实度下降",
+      "runtime_id": "239e02ecfb7c493f11b075a4ffe5983590e1a96ac206ec64e7b82313b15457e9"
+    },
+    {
+      "id": "action",
+      "name": "来源动作筛选初版",
+      "metrics": {
+        "scenarios": 72,
+        "passed": 71,
+        "task_pass_rate": 0.9861111111111112,
+        "model_completed": 72,
+        "turns": 74,
+        "model_completed_turns": 74,
+        "pass_by_kind": {
+          "knowledge": {
+            "passed": 60,
+            "planned": 60
+          },
+          "boundary": {
+            "passed": 5,
+            "planned": 5
+          },
+          "multi_turn": {
+            "passed": 1,
+            "planned": 2
+          },
+          "business": {
+            "passed": 5,
+            "planned": 5
+          }
+        },
+        "tool_invocations": {
+          "resolve_semantics": 129,
+          "skill_state": 66,
+          "search_evidence": 66,
+          "graph_search": 65,
+          "evaluate_service_decision": 8,
+          "lookup_order": 5,
+          "check_dealer": 1
+        },
+        "judge_completed": 72,
+        "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+        "mean_judge_score": 9.916666666666666,
+        "dimension_means": {
+          "factual_model_accuracy": 1.9583333333333333,
+          "evidence_support": 1.9583333333333333,
+          "steps_and_history": 2.0,
+          "business_boundaries": 2.0,
+          "bilingual_clarity": 2.0
+        },
+        "http_latency": {
+          "samples": 74,
+          "mean_ms": 6842.353511242804,
+          "p50_ms": 6052.189750000252,
+          "p99_ms": 13169.1051880727,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "graph_latency": {
+          "samples": 65,
+          "mean_ms": 0.48840000000000006,
+          "p50_ms": 0.466,
+          "p99_ms": 1.6886799999999986,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "retrieval_latency": {
+          "samples": 66,
+          "mean_ms": 15.271227272727272,
+          "p50_ms": 13.2175,
+          "p99_ms": 44.59844999999995,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "inference_tokens": {
+          "prompt_tokens": 507197,
+          "completion_tokens": 51100,
+          "total_tokens": 558297
+        },
+        "judge_tokens": {
+          "prompt_tokens": 123001,
+          "completion_tokens": 29091,
+          "total_tokens": 152092
+        },
+        "money_cost": null,
+        "money_reason": "No verified gateway prices",
+        "retrieval_on_knowledge": {
+          "samples": 60,
+          "source_families": 30,
+          "hit_at_1": 0.9333333333333333,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.9333333333333333,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9666666666666667,
+          "family_bootstrap_hit_at_1_95_interval": [
+            0.8333333333333334,
+            1.0
+          ],
+          "by_language": {
+            "en": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            },
+            "zh": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            }
+          },
+          "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+        },
+        "bad_case_attribution": {
+          "none": 1
+        }
+      },
+      "faithfulness": {
+        "parent": 0.9150432900432901,
+        "action": 0.9344729344729344
+      },
+      "decision": "拒绝初版：发现restart词形遗漏，保留记录",
+      "runtime_id": "8ecc6e4ebb5a4cf79f1c1b46512da74dff4524ba0363657dc97185111285e42e"
+    },
+    {
+      "id": "verified",
+      "name": "增加模型支持性检查",
+      "metrics": {
+        "scenarios": 72,
+        "passed": 69,
+        "task_pass_rate": 0.9583333333333334,
+        "model_completed": 70,
+        "turns": 74,
+        "model_completed_turns": 72,
+        "pass_by_kind": {
+          "knowledge": {
+            "passed": 58,
+            "planned": 60
+          },
+          "boundary": {
+            "passed": 5,
+            "planned": 5
+          },
+          "business": {
+            "passed": 5,
+            "planned": 5
+          },
+          "multi_turn": {
+            "passed": 1,
+            "planned": 2
+          }
+        },
+        "tool_invocations": {
+          "resolve_semantics": 129,
+          "skill_state": 66,
+          "search_evidence": 66,
+          "graph_search": 65,
+          "evaluate_service_decision": 8,
+          "lookup_order": 5,
+          "check_dealer": 1
+        },
+        "judge_completed": 72,
+        "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+        "mean_judge_score": 9.73611111111111,
+        "dimension_means": {
+          "factual_model_accuracy": 1.9305555555555556,
+          "evidence_support": 1.9305555555555556,
+          "steps_and_history": 1.9444444444444444,
+          "business_boundaries": 1.9722222222222223,
+          "bilingual_clarity": 1.9583333333333333
+        },
+        "http_latency": {
+          "samples": 74,
+          "mean_ms": 8901.55016660739,
+          "p50_ms": 7399.975895998068,
+          "p99_ms": 26325.610300584955,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "graph_latency": {
+          "samples": 65,
+          "mean_ms": 0.5065846153846153,
+          "p50_ms": 0.433,
+          "p99_ms": 2.587079999999998,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "retrieval_latency": {
+          "samples": 66,
+          "mean_ms": 14.818484848484848,
+          "p50_ms": 12.91,
+          "p99_ms": 44.08549999999996,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "inference_tokens": {
+          "prompt_tokens": 721504,
+          "completion_tokens": 59594,
+          "total_tokens": 781098
+        },
+        "judge_tokens": {
+          "prompt_tokens": 122291,
+          "completion_tokens": 28576,
+          "total_tokens": 150867
+        },
+        "money_cost": null,
+        "money_reason": "No verified gateway prices",
+        "retrieval_on_knowledge": {
+          "samples": 60,
+          "source_families": 30,
+          "hit_at_1": 0.9333333333333333,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.9333333333333333,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9666666666666667,
+          "family_bootstrap_hit_at_1_95_interval": [
+            0.8333333333333334,
+            1.0
+          ],
+          "by_language": {
+            "en": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            },
+            "zh": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            }
+          },
+          "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+        },
+        "bad_case_attribution": {
+          "provider_or_validator": 2,
+          "none": 1
+        }
+      },
+      "faithfulness": {
+        "parent": 0.9150432900432901,
+        "verified": 0.9814814814814815
+      },
+      "decision": "拒绝：流程通过或完成率回归",
+      "runtime_id": "081d8cacf9c51e81e100ec89b01ad53b8c805230956487d544df10ced07a893a"
+    },
+    {
+      "id": "action-fixed",
+      "name": "来源动作筛选修正版",
+      "metrics": {
+        "scenarios": 72,
+        "passed": 71,
+        "task_pass_rate": 0.9861111111111112,
+        "model_completed": 72,
+        "turns": 74,
+        "model_completed_turns": 74,
+        "pass_by_kind": {
+          "knowledge": {
+            "passed": 59,
+            "planned": 60
+          },
+          "boundary": {
+            "passed": 5,
+            "planned": 5
+          },
+          "business": {
+            "passed": 5,
+            "planned": 5
+          },
+          "multi_turn": {
+            "passed": 2,
+            "planned": 2
+          }
+        },
+        "tool_invocations": {
+          "resolve_semantics": 129,
+          "skill_state": 66,
+          "search_evidence": 66,
+          "graph_search": 65,
+          "evaluate_service_decision": 8,
+          "lookup_order": 5,
+          "check_dealer": 1
+        },
+        "judge_completed": 72,
+        "task_denominator": "all planned finished rows, including model/judge failures; not only judged successes",
+        "mean_judge_score": 9.930555555555555,
+        "dimension_means": {
+          "factual_model_accuracy": 1.9722222222222223,
+          "evidence_support": 1.9722222222222223,
+          "steps_and_history": 1.9861111111111112,
+          "business_boundaries": 2.0,
+          "bilingual_clarity": 2.0
+        },
+        "http_latency": {
+          "samples": 74,
+          "mean_ms": 6913.705670662976,
+          "p50_ms": 6597.604687500279,
+          "p99_ms": 13315.919552479749,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "graph_latency": {
+          "samples": 65,
+          "mean_ms": 0.47296923076923086,
+          "p50_ms": 0.407,
+          "p99_ms": 1.8967599999999982,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "retrieval_latency": {
+          "samples": 66,
+          "mean_ms": 15.036560606060604,
+          "p50_ms": 13.124,
+          "p99_ms": 53.08574999999991,
+          "p99_note": "descriptive percentile; unstable for small samples"
+        },
+        "inference_tokens": {
+          "prompt_tokens": 506644,
+          "completion_tokens": 51204,
+          "total_tokens": 557848
+        },
+        "judge_tokens": {
+          "prompt_tokens": 122649,
+          "completion_tokens": 28744,
+          "total_tokens": 151393
+        },
+        "money_cost": null,
+        "money_reason": "No verified gateway prices",
+        "retrieval_on_knowledge": {
+          "samples": 60,
+          "source_families": 30,
+          "hit_at_1": 0.9333333333333333,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_1": 0.9333333333333333,
+          "recall_at_3": 1.0,
+          "recall_at_5": 1.0,
+          "mrr": 0.9666666666666667,
+          "family_bootstrap_hit_at_1_95_interval": [
+            0.8333333333333334,
+            1.0
+          ],
+          "by_language": {
+            "en": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            },
+            "zh": {
+              "hit_at_1": 0.9333333333333333,
+              "hit_at_3": 1.0,
+              "hit_at_5": 1.0,
+              "recall_at_1": 0.9333333333333333,
+              "recall_at_3": 1.0,
+              "recall_at_5": 1.0,
+              "mrr": 0.9666666666666667
+            }
+          },
+          "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+        },
+        "bad_case_attribution": {
+          "context": 1
+        }
+      },
+      "faithfulness": {
+        "parent": 0.9150432900432901,
+        "action-fixed": 0.9277056277056278
+      },
+      "decision": "本机局部修复；保留1个新退步，未通过独立验收",
+      "runtime_id": "682f5e017cbf77506e02ff411ef3caf77d20d95672c7e7362ba09b684fe2d01f"
+    }
+  ],
+  "chunk": {
+    "fit": {
+      "weights": {
+        "title": 0.4,
+        "body": 0.4,
+        "lexical": 0.1,
+        "chunk": 0.1
+      },
+      "development_hit_at_1": 0.9016666666666666,
+      "development_recall_at_1": 0.8842777777777777,
+      "queries": 600,
+      "protocol_sha256": "daaefe374d3c82367f327b7170bd40928504df8776b51e349f5d4dc118634717"
+    },
+    "metrics": {
+      "samples": 300,
+      "source_families": 150,
+      "hit_at_1": 0.9266666666666666,
+      "hit_at_3": 0.9866666666666667,
+      "hit_at_5": 0.9933333333333333,
+      "recall_at_1": 0.8944444444444444,
+      "recall_at_3": 0.9777777777777777,
+      "recall_at_5": 0.9866666666666667,
+      "mrr": 0.9572222222222221,
+      "family_bootstrap_hit_at_1_95_interval": [
+        0.8866666666666667,
+        0.9633333333333334
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 0.9333333333333333,
+          "hit_at_3": 0.9866666666666667,
+          "hit_at_5": 0.9933333333333333,
+          "recall_at_1": 0.9011111111111111,
+          "recall_at_3": 0.9777777777777777,
+          "recall_at_5": 0.9866666666666667,
+          "mrr": 0.9605555555555556
+        },
+        "zh": {
+          "hit_at_1": 0.92,
+          "hit_at_3": 0.9866666666666667,
+          "hit_at_5": 0.9933333333333333,
+          "recall_at_1": 0.8877777777777777,
+          "recall_at_3": 0.9777777777777777,
+          "recall_at_5": 0.9866666666666667,
+          "mrr": 0.9538888888888889
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    }
+  },
+  "reference_ranking": {
+    "validation": {
+      "samples": 300,
+      "source_families": 150,
+      "hit_at_1": 0.9366666666666666,
+      "hit_at_3": 0.9866666666666667,
+      "hit_at_5": 0.9933333333333333,
+      "recall_at_1": 0.9044444444444444,
+      "recall_at_3": 0.9777777777777777,
+      "recall_at_5": 0.9866666666666667,
+      "mrr": 0.961111111111111,
+      "family_bootstrap_hit_at_1_95_interval": [
+        0.9,
+        0.97
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 0.9466666666666667,
+          "hit_at_3": 0.9866666666666667,
+          "hit_at_5": 0.9933333333333333,
+          "recall_at_1": 0.9144444444444446,
+          "recall_at_3": 0.9777777777777777,
+          "recall_at_5": 0.9866666666666667,
+          "mrr": 0.9672222222222223
+        },
+        "zh": {
+          "hit_at_1": 0.9266666666666666,
+          "hit_at_3": 0.9866666666666667,
+          "hit_at_5": 0.9933333333333333,
+          "recall_at_1": 0.8944444444444444,
+          "recall_at_3": 0.9777777777777777,
+          "recall_at_5": 0.9866666666666667,
+          "mrr": 0.955
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    },
+    "legacy": {
+      "samples": 300,
+      "source_families": 150,
+      "hit_at_1": 0.8633333333333333,
+      "hit_at_3": 0.9466666666666667,
+      "hit_at_5": 0.96,
+      "recall_at_1": 0.8503508771929824,
+      "recall_at_3": 0.9353508771929825,
+      "recall_at_5": 0.9536842105263158,
+      "mrr": 0.9041111111111112,
+      "family_bootstrap_hit_at_1_95_interval": [
+        0.8133333333333334,
+        0.9133333333333333
+      ],
+      "by_language": {
+        "en": {
+          "hit_at_1": 0.8733333333333333,
+          "hit_at_3": 0.96,
+          "hit_at_5": 0.9666666666666667,
+          "recall_at_1": 0.8603508771929824,
+          "recall_at_3": 0.9470175438596491,
+          "recall_at_5": 0.9603508771929825,
+          "mrr": 0.9135555555555556
+        },
+        "zh": {
+          "hit_at_1": 0.8533333333333334,
+          "hit_at_3": 0.9333333333333333,
+          "hit_at_5": 0.9533333333333334,
+          "recall_at_1": 0.8403508771929825,
+          "recall_at_3": 0.9236842105263158,
+          "recall_at_5": 0.9470175438596491,
+          "mrr": 0.8946666666666666
+        }
+      },
+      "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+    }
+  },
+  "active_retrieval": {
+    "samples": 300,
+    "source_families": 150,
+    "hit_at_1": 0.87,
+    "hit_at_3": 0.9466666666666667,
+    "hit_at_5": 0.96,
+    "recall_at_1": 0.8570175438596491,
+    "recall_at_3": 0.9353508771929825,
+    "recall_at_5": 0.9536842105263158,
+    "mrr": 0.9079999999999999,
+    "family_bootstrap_hit_at_1_95_interval": [
+      0.82,
+      0.92
+    ],
+    "by_language": {
+      "en": {
+        "hit_at_1": 0.8733333333333333,
+        "hit_at_3": 0.96,
+        "hit_at_5": 0.9666666666666667,
+        "recall_at_1": 0.8603508771929824,
+        "recall_at_3": 0.9470175438596491,
+        "recall_at_5": 0.9603508771929825,
+        "mrr": 0.9135555555555553
+      },
+      "zh": {
+        "hit_at_1": 0.8666666666666667,
+        "hit_at_3": 0.9333333333333333,
+        "hit_at_5": 0.9533333333333334,
+        "recall_at_1": 0.8536842105263158,
+        "recall_at_3": 0.9236842105263158,
+        "recall_at_5": 0.9470175438596491,
+        "mrr": 0.9024444444444445
+      }
+    },
+    "definition": "hit@1 is at least one accepted relevant article in the first result; true set recall@1 is separately reported when several gold articles are valid"
+  },
+  "paired_check": {
+    "n_scenarios": 72,
+    "paired_improved": [
+      "kb-eaf9828936827d:zh"
+    ],
+    "paired_regressed": [
+      "kb-fb1e244c982076:zh"
+    ],
+    "all_case_inputs_and_gold_unchanged": true,
+    "faithfulness_n": 12,
+    "faithfulness_source_families": 6,
+    "faithfulness_mean_delta": 0.012662337662337672,
+    "faithfulness_cluster_bootstrap_95_interval": [
+      -0.03982683982683982,
+      0.07305194805194806
+    ],
+    "interpretation": "Seen regression only. Positive mean with a broad interval is not independent non-regression certification. New regression retained, not hidden."
+  },
+  "repaired_judge": {
+    "agreement_rate": 1.0,
+    "pending_adjudication": 0
+  },
+  "confirmation_status": "未运行，保持冻结；验证与回归达标后才开启一次",
+  "upload_status": "禁止上传：独立Recall@1>90%且独立忠实度不下降的证据尚未齐全",
+  "old_gold_changed": false,
+  "judge_rubric_changed": false,
+  "old_scores_overwritten": false
+}

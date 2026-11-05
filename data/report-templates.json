@@ -1,0 +1,69 @@
+{
+  "version": "report-templates-v1",
+  "templates": [
+    {
+      "id": "executive",
+      "name": "管理层 / Boss",
+      "description": "把样例运营事实转成资源取舍与决策议题。",
+      "number": "01",
+      "tags": "经营概览、履约风险、投入优先级",
+      "title": "管理层决策简报",
+      "sections": [
+        "经营判断",
+        "关键风险与影响",
+        "需要拍板的事项",
+        "行动与验证"
+      ],
+      "skill_path": "skills/reports/executive/SKILL.md",
+      "prompt_path": "prompts/reports/executive.md"
+    },
+    {
+      "id": "gtm",
+      "name": "GTM / 渠道策略",
+      "description": "从渠道名录和服务准备度看进入市场的前置条件。",
+      "number": "02",
+      "tags": "国家名录、服务准备度、市场验证",
+      "title": "渠道与市场准备度报告",
+      "sections": [
+        "渠道资料说明了什么",
+        "服务准备度与差距",
+        "待验证的市场假设",
+        "GTM 验证计划"
+      ],
+      "skill_path": "skills/reports/gtm/SKILL.md",
+      "prompt_path": "prompts/reports/gtm.md"
+    },
+    {
+      "id": "service_ops",
+      "name": "客服运营",
+      "description": "定位履约样例、问题分布和知识覆盖中的处理重点。",
+      "number": "03",
+      "tags": "咨询场景、逐商品履约、知识资料",
+      "title": "客服运营诊断报告",
+      "sections": [
+        "问题样例与处理重点",
+        "履约与知识观察",
+        "流程与证据缺口",
+        "运营改进与验收"
+      ],
+      "skill_path": "skills/reports/service_ops/SKILL.md",
+      "prompt_path": "prompts/reports/service_ops.md"
+    },
+    {
+      "id": "governance",
+      "name": "数据与风险",
+      "description": "检查本体事实、规则、来源和操作边界是否可靠。",
+      "number": "04",
+      "tags": "未知字段、来源质量、操作治理",
+      "title": "数据可信度与交付风险报告",
+      "sections": [
+        "当前可信基础",
+        "数据与规则风险",
+        "操作边界与治理",
+        "补齐顺序与验收"
+      ],
+      "skill_path": "skills/reports/governance/SKILL.md",
+      "prompt_path": "prompts/reports/governance.md"
+    }
+  ]
+}

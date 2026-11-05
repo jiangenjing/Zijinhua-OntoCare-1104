@@ -1,0 +1,179 @@
+{
+  "version": "v0",
+  "parent": null,
+  "data_sha256": "9244fcd1baa0f3a9437d996b203137bd24e7faf368f5e0649daf5177a1c2dbdb",
+  "domain_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "required": [
+      "pn",
+      "error_code",
+      "completed_actions",
+      "claims",
+      "verified"
+    ],
+    "properties": {
+      "pn": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "error_code": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "completed_actions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      },
+      "claims": {
+        "type": "object"
+      },
+      "verified": {
+        "type": "object"
+      }
+    },
+    "additionalProperties": false
+  },
+  "tools": [
+    {
+      "name": "browse_semantics",
+      "input": "query, kind, limit<=6",
+      "read_only": true
+    },
+    {
+      "name": "resolve_semantics",
+      "input": "mentions<=5, context",
+      "read_only": true
+    },
+    {
+      "name": "search_evidence",
+      "input": "pn, query, error_code",
+      "read_only": true
+    },
+    {
+      "name": "lookup_order",
+      "input": "order_number",
+      "read_only": true,
+      "data": "local_snapshot"
+    },
+    {
+      "name": "skill_state",
+      "input": "session, skill, observed_actions",
+      "read_only": false,
+      "scope": "local_session_only"
+    }
+  ],
+  "skills": {
+    "disambiguation": {
+      "steps": [
+        "identify_pn",
+        "ask_if_ambiguous"
+      ],
+      "forbidden": [
+        "guess_model"
+      ]
+    },
+    "troubleshooting": {
+      "steps": [
+        "find_exact_model_evidence",
+        "check_completed_actions",
+        "offer_supported_next_step",
+        "escalate_if_exhausted"
+      ],
+      "track_completed": false,
+      "forbidden": [
+        "invent_repair_step",
+        "execute_refund"
+      ]
+    },
+    "shipping": {
+      "steps": [
+        "collect_order_number",
+        "lookup_snapshot",
+        "report_snapshot_and_gaps"
+      ],
+      "forbidden": [
+        "claim_live_tracking"
+      ]
+    },
+    "aftersales": {
+      "steps": [
+        "identify_product_and_component",
+        "retrieve_policy",
+        "collect_missing_conditions",
+        "request_manual_verification"
+      ],
+      "forbidden": [
+        "guarantee_eligibility",
+        "claim_refund_executed"
+      ]
+    }
+  },
+  "policies": [
+    {
+      "id": "warranty:qa-bd1277fc0169",
+      "pn": "T8D04",
+      "kind": "warranty",
+      "components": {
+        "pump_hub": {
+          "months": 12
+        },
+        "washable_parts": {
+          "months": 3
+        }
+      },
+      "source_id": "qa-bd1277fc0169",
+      "scope": "competition_source_snapshot; jurisdiction/effective_date_unspecified"
+    },
+    {
+      "id": "warranty:qa-e38d374e7f2d",
+      "pn": "T8D04",
+      "kind": "warranty",
+      "components": {
+        "pump_hub": {
+          "months": 12
+        },
+        "washable_parts": {
+          "months": 3
+        }
+      },
+      "source_id": "qa-e38d374e7f2d",
+      "scope": "competition_source_snapshot; jurisdiction/effective_date_unspecified"
+    },
+    {
+      "id": "refund:qa-e26318661946",
+      "pn": "T8D04",
+      "kind": "refund",
+      "requirements": [
+        "purchase_within_30_days",
+        "new",
+        "unopened",
+        "intact_seals",
+        "unused",
+        "original_packaging"
+      ],
+      "source_id": "qa-e26318661946",
+      "scope": "competition_source_snapshot; jurisdiction/effective_date_unspecified"
+    }
+  ],
+  "origin": "source-grounded initial build; minimal Skill before completion inheritance",
+  "approved_faq": [
+    "what is the weight of solocam s340(t8170)?"
+  ],
+  "faq_review": "host-reviewed exact source question, no human approval claim",
+  "record_files_sha256": {
+    "terms": "c7b078808e7de62d1957d915c090bbc33dd96d7fc0943e0d83f1f71328ec49ea",
+    "mappings": "f5e0ec689a5b252fd23130fd8af94ddff9df80cda76491f6368199f83b091b7f",
+    "relations": "62a3d88b4d16783cd4f5cfd3a1a624cf5047c5a50f4740864c0f0bd004d9e668",
+    "constraints": "0fc45caccb973f15f062b48f5cb06dda5e565e005f913e7977bde498dd229335",
+    "evidence": "ce3bdfc70fa7d0cd35f21cba0ad20dc82411114f4301184eb92fdcc4fb5e7240"
+  },
+  "bundle_sha256": "e9f98091977825fe5dbc5614fc1b9fefaab239475e742b58eac00f10f25d3ad1"
+}

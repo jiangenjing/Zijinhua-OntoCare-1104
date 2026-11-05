@@ -1,0 +1,299 @@
+{
+  "schemaVersion": "business-v1",
+  "objectTypes": [
+    {
+      "id": "ProductOffering",
+      "label": "可售商品规格",
+      "description": "具有商业意义的 SKU 版本，主机/套装/配件分类可能仍为候选。",
+      "primaryKey": "node.id",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "sku"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        },
+        "offering_kind": {
+          "type": "string",
+          "description": "offering_kind"
+        },
+        "classification_status": {
+          "type": "string",
+          "description": "classification_status"
+        },
+        "source_rows": {
+          "type": "array",
+          "description": "source_rows"
+        }
+      }
+    },
+    {
+      "id": "Shipment",
+      "label": "物流包裹",
+      "description": "由来源明确运单建立的物流包裹；内容和快照时间未知时不编造。",
+      "primaryKey": "node.id",
+      "properties": {
+        "tracking_number": {
+          "type": "string",
+          "description": "tracking_number"
+        },
+        "carrier": {
+          "type": "string|null",
+          "description": "carrier"
+        },
+        "status": {
+          "type": "string",
+          "description": "status"
+        },
+        "source_status": {
+          "type": "string|null",
+          "description": "source_status"
+        },
+        "actual_shipped_at": {
+          "type": "date|null",
+          "description": "actual_shipped_at"
+        },
+        "source": {
+          "type": "object",
+          "description": "source"
+        },
+        "association_status": {
+          "type": "string",
+          "description": "association_status"
+        },
+        "contents_verified": {
+          "type": "boolean",
+          "description": "contents_verified"
+        },
+        "snapshot_as_of": {
+          "type": "date|null",
+          "description": "snapshot_as_of"
+        }
+      }
+    },
+    {
+      "id": "Country",
+      "label": "国家与市场",
+      "description": "名录使用的国家/市场代码，不从收件地址反推购买国家。",
+      "primaryKey": "node.id",
+      "properties": {
+        "source_code": {
+          "type": "string",
+          "description": "source_code"
+        },
+        "description": {
+          "type": "string",
+          "description": "description"
+        }
+      }
+    },
+    {
+      "id": "KnowledgeCategory",
+      "label": "知识目录",
+      "description": "原知识管理体系中的目录概念；分类关系不等于类继承。",
+      "primaryKey": "node.id",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "path": {
+          "type": "array",
+          "description": "path"
+        },
+        "sheet": {
+          "type": "string",
+          "description": "sheet"
+        }
+      }
+    },
+    {
+      "id": "ExternalMaterial",
+      "label": "外部材料引用",
+      "description": "工单链接的材料；不自动抓取不可信 URL。",
+      "primaryKey": "node.id",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "url"
+        },
+        "fetch_status": {
+          "type": "string",
+          "description": "fetch_status"
+        },
+        "understanding_status": {
+          "type": "string",
+          "description": "understanding_status"
+        },
+        "source": {
+          "type": "object",
+          "description": "source"
+        }
+      }
+    },
+    {
+      "id": "DealerCheck",
+      "label": "销售方核验记录",
+      "description": "基于客户陈述的国家与销售方查询；保存候选、规则和缺口，不等于订单销售方已核实。",
+      "primaryKey": "node.id",
+      "properties": {
+        "country_claim": {
+          "type": "string",
+          "description": "客户陈述的购买国家"
+        },
+        "seller_claim": {
+          "type": "string",
+          "description": "客户陈述的销售方"
+        },
+        "claim_status": {
+          "type": "string",
+          "description": "陈述核验状态"
+        },
+        "status": {
+          "type": "string",
+          "description": "名单匹配结果"
+        },
+        "competition_authorization": {
+          "type": "string",
+          "description": "比赛名单规则判断"
+        },
+        "eligible": {
+          "type": "null",
+          "description": "真实售后资格尚未核验"
+        },
+        "reason": {
+          "type": "string",
+          "description": "判断理由"
+        },
+        "match_policy": {
+          "type": "object|null",
+          "description": "匹配算法及阈值"
+        },
+        "session_reference": {
+          "type": "string",
+          "description": "会话匿名索引"
+        }
+      }
+    },
+    {
+      "id": "ServiceRule",
+      "label": "服务决策规则",
+      "description": "赛题 SOP 中可追溯的补发、换货和材料核验规则；运行结果仅建议。",
+      "primaryKey": "node.id",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "原始规则含义"
+        },
+        "source": {
+          "type": "object",
+          "description": "来源文件指纹与图片位置"
+        },
+        "scope": {
+          "type": "string",
+          "description": "适用赛题范围"
+        }
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "purchases_offering",
+      "label": "购买规格",
+      "source": "OrderItem",
+      "target": "ProductOffering",
+      "cardinality": "N:1",
+      "rule": "源商品行的 SKU 精确对应"
+    },
+    {
+      "id": "offering_model_candidate",
+      "label": "型号候选",
+      "source": "ProductOffering",
+      "target": "ProductModel",
+      "cardinality": "N:1",
+      "rule": "已有别名匹配，仅为候选依据"
+    },
+    {
+      "id": "has_shipment",
+      "label": "关联包裹",
+      "source": "Order",
+      "target": "Shipment",
+      "cardinality": "1:N",
+      "rule": "运单所在源行的订单归属"
+    },
+    {
+      "id": "reported_on_item",
+      "label": "物流记录源行",
+      "source": "Shipment",
+      "target": "OrderItem",
+      "cardinality": "N:N",
+      "rule": "物流来源于商品行，不确认包裹物品和数量"
+    },
+    {
+      "id": "listed_in_country",
+      "label": "名录国家",
+      "source": "Dealer",
+      "target": "Country",
+      "cardinality": "N:1",
+      "rule": "来源 country 精确匹配，不代表完整授权"
+    },
+    {
+      "id": "classified_as",
+      "label": "知识分类",
+      "source": "KnowledgeArticle",
+      "target": "KnowledgeCategory",
+      "cardinality": "N:1",
+      "rule": "来源三级目录路径"
+    },
+    {
+      "id": "contains_category",
+      "label": "包含子目录",
+      "source": "KnowledgeCategory",
+      "target": "KnowledgeCategory",
+      "cardinality": "1:N",
+      "rule": "知识目录层级，不是对象类型继承"
+    },
+    {
+      "id": "references_material",
+      "label": "引用外部材料",
+      "source": "SupportTicket",
+      "target": "ExternalMaterial",
+      "cardinality": "1:N",
+      "rule": "工单源单元格中的外部超链接"
+    },
+    {
+      "id": "stated_purchase_country",
+      "label": "陈述购买国家",
+      "source": "DealerCheck",
+      "target": "Country",
+      "cardinality": "N:1",
+      "rule": "只关联客户提供的国家代码，不从地址推断"
+    },
+    {
+      "id": "candidate_dealer",
+      "label": "匹配销售方候选",
+      "source": "DealerCheck",
+      "target": "Dealer",
+      "cardinality": "N:N",
+      "rule": "保留国家限定匹配结果及理由，不声称真实售后资格"
+    },
+    {
+      "id": "claimed_order",
+      "label": "会话提及订单",
+      "source": "DealerCheck",
+      "target": "Order",
+      "cardinality": "N:1",
+      "rule": "客户在同一会话提供订单号；未核验归属"
+    },
+    {
+      "id": "governed_by_service_rule",
+      "label": "服务决策依据",
+      "source": "*",
+      "target": "ServiceRule",
+      "cardinality": "N:N",
+      "rule": "规则指定的适用对象类型；连接表示适用范围，不表示规则条件已满足"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "schema": 1,
+  "files": {
+    "黑客松智能服务赛题资料.xlsx": "0279f939182e84526c05dfc5e1b5a694248ab5acfe4bec7ea4857f9504051f94",
+    "客诉工单信息.xlsx": "2b1d08efb9510b4eb837720b23275ffe6d283a9721e1d424510f27f83c6fabc1",
+    "eufy Robovacs Q&A.xlsx": "9e937ebff196583188a6848b4b361612b0defb54ade50617d4ee9cafa15ccb0e",
+    "eufy Breast Pump Q&A.xlsx": "4a1d516fd0fe0f52eb0077b9917721d1a71e7bc68281a8f1a23fea4052db03b1"
+  },
+  "canonical": "黑客松智能服务赛题资料.xlsx",
+  "mirror_checks": [
+    {
+      "file": "客诉工单信息.xlsx",
+      "canonical_sheet": "客诉工单信息",
+      "rows": 63,
+      "identical_business_fields": true
+    },
+    {
+      "file": "eufy Robovacs Q&A.xlsx",
+      "canonical_sheet": "eufy Robovacs Q&A",
+      "rows": 593,
+      "identical_business_fields": true
+    },
+    {
+      "file": "eufy Breast Pump Q&A.xlsx",
+      "canonical_sheet": "eufy Breast Pump Q&A",
+      "rows": 282,
+      "identical_business_fields": true
+    }
+  ],
+  "raw_counts": {
+    "客诉工单信息": 63,
+    "订单信息": 24,
+    "eufy Robovacs Q&A": 593,
+    "eufy Breast Pump Q&A": 282,
+    "经销商信息": 336
+  },
+  "qa_total": 875,
+  "qa_customer_visible": 872,
+  "orders": 16,
+  "order_items": 24,
+  "dealers_unique": 330,
+  "duplicate_dealers_removed": 6,
+  "same_text_qa_extra_records_preserved": 80,
+  "unresolved_skus": [
+    {
+      "source_row": 2,
+      "sku": "E235311B",
+      "reason": "no_unique_source_PN_prefix"
+    },
+    {
+      "source_row": 8,
+      "sku": "/",
+      "reason": "no_unique_source_PN_prefix"
+    },
+    {
+      "source_row": 59,
+      "sku": "/",
+      "reason": "no_unique_source_PN_prefix"
+    },
+    {
+      "source_row": 64,
+      "sku": "/",
+      "reason": "no_unique_source_PN_prefix"
+    }
+  ],
+  "attachment_audit": {
+    "merge_ranges": {
+      "客诉工单信息": [],
+      "订单信息": [
+        "B3:B4",
+        "F3:F4",
+        "H3:H4",
+        "B6:B7",
+        "H6:H7",
+        "J6:J7",
+        "K6:K7",
+        "L6:L7",
+        "B8:B9",
+        "H8:H9",
+        "B10:B11",
+        "H10:H11",
+        "J10:J11",
+        "K10:K11",
+        "L10:L11",
+        "B12:B13",
+        "H12:H13",
+        "J12:J13",
+        "K12:K13",
+        "L12:L13",
+        "B14:B15",
+        "H14:H15",
+        "B16:B17",
+        "H16:H17",
+        "A20:A21",
+        "B20:B21",
+        "H20:H21",
+        "K20:K21",
+        "L20:L21"
+      ],
+      "eufy Robovacs Q&A": [],
+      "eufy Breast Pump Q&A": [],
+      "经销商信息": []
+    },
+    "media": [
+      {
+        "member": "xl/media/image1.jpeg",
+        "sha256": "7ad05781ed3f08e45fe0695de90bb1b77c50d2a54b61219db2617729d82794fc",
+        "bytes": 1511365,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image5.jpeg",
+        "sha256": "188128d7577e5e01d977e86ebcfaa374234737cad8b8a885b39eae4675b4ad52",
+        "bytes": 9820369,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image4.jpeg",
+        "sha256": "9cbe4447a17e515440084aa6f1794616b7de26cdacc852c2e23d3929d315942b",
+        "bytes": 632427,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image6.jpeg",
+        "sha256": "ef116f90dea57754818c38931b7daee32d6e900819cf1bc19f2848d346b3adf0",
+        "bytes": 472801,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image8.jpeg",
+        "sha256": "985f4106433353a9c8421acd60a5e7403fe17c758629cee0ef5261b96abfa548",
+        "bytes": 1518611,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image7.jpeg",
+        "sha256": "a95a479643147db079101bf12b7fa1e15b14a8d1522d7cc8c2d9dcb288b1727e",
+        "bytes": 823565,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image9.jpeg",
+        "sha256": "3e0b3e8bb4c2aa416caf0cebbbb771f7ddf86ef6846c4b6e2152fad75e7b911e",
+        "bytes": 194356,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image10.jpeg",
+        "sha256": "7e5c44d8d6a92a2dc6b69ad07d1b342d2d55399f08d248a1731b3a07c9fd17d1",
+        "bytes": 273964,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image3.jpeg",
+        "sha256": "fe22e930adea5d7ecbf49e26ec7503bcdb6616281178d0b19670244b9ab09121",
+        "bytes": 15716520,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image2.jpeg",
+        "sha256": "2eb11d7401195592ed9c9eeefdf69103f55e995ed74c2ac58fab592822ba96c9",
+        "bytes": 12719631,
+        "interpretation": "not_processed"
+      },
+      {
+        "member": "xl/media/image11.png",
+        "sha256": "4abb982356d97a719868ee718ef7bbb068c6331e0b9876e53ffad58300e18176",
+        "bytes": 8164,
+        "interpretation": "not_processed"
+      }
+    ],
+    "drawing_anchors": [
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 15,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 21,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 31,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 39,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 43,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 46,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 47,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 49,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 54,
+        "column": 6
+      },
+      {
+        "drawing": "xl/drawings/drawing1.xml",
+        "row": 56,
+        "column": 6
+      }
+    ]
+  },
+  "policy": {
+    "raw_private_data": "local/service.sqlite only; ignored by Git",
+    "evaluation_as_of": "2026-10-28",
+    "ticket_outcomes": "unknown; first emails only"
+  }
+}

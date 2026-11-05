@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+.pytest_cache/
+local/
+*.xlsx
+.env*
+*api_config.json
+*.pyc
+*.egg-info/
+ontology/visualizations/
+# Historical email-derived evaluations stay on this computer.
+/evaluation/customer-service-v2/
+/evaluation/service-v2/
+/reports/customer-service-v2/
+/reports/eval-v2/
+/.playwright-cli/
+
+# Private customer-email evaluation exports.
+/outputs/ticket-evaluation-v1/

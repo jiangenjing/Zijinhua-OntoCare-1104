@@ -1,0 +1,12 @@
+{
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "data_sha256": "ef804ae469dd5b15d39be34b75915d4fd79967a984c2a4cfe78cd470da647dc4",
+  "chunks": 1043,
+  "parents": 872,
+  "matching": "exact_normalized_dot_product",
+  "prefixes": [
+    "query: ",
+    "passage: "
+  ]
+}

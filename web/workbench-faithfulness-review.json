@@ -1,0 +1,118 @@
+{
+  "raw_scores_modified": false,
+  "items": [
+    {
+      "id": "kb-14a87c6fcfc9a3:zh:after",
+      "raw_faithfulness": 0.8,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "A cleaning-solution level that has not changed at all over two weeks usually means the solution is not being consumed normally.",
+          "reason": "The context only says the solution may not be dispensing properly; it does not state that an unchanged level means the solution is not being consumed normally.",
+          "verdict": 0
+        },
+        {
+          "statement": "Remove the base station clean water tank and check whether the bottle is seated properly and not empty.",
+          "reason": "The context says to remove the base station clean water tank and check whether the cleaning solution is not installed or if it is empty, but it does not mention checking whether the bottle is seated properly.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    },
+    {
+      "id": "kb-14a87c6fcfc9a3:en:after",
+      "raw_faithfulness": 0.9090909090909091,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "If the cleaning solution bottle is installed correctly, the user should follow the official troubleshooting guide at https://support.eufy.com/s/article/How-do-I-use-eufy-cleaning-solution-with-my-S1-Pro.",
+          "reason": "The context says to try the suggestions in the article below and provides that URL, but it does not condition this on the bottle being installed correctly; it asks to ensure correct installation and also try the suggestions.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    },
+    {
+      "id": "kb-aa26e0cc037149:en:after",
+      "raw_faithfulness": 0.625,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "If warning 6015 still persists after that, the user should provide a photo or video of the error screen.",
+          "reason": "The context does not mention providing a photo or video of the error screen for warning 6015; this is not directly supported.",
+          "verdict": 0
+        },
+        {
+          "statement": "If warning 6015 still persists after that, the user should provide the actual result.",
+          "reason": "The context does not instruct the user to provide the actual result for warning 6015; this is not directly supported.",
+          "verdict": 0
+        },
+        {
+          "statement": "The photo or video and the actual result can be reviewed further.",
+          "reason": "The context does not mention reviewing a photo, video, or actual result; this is not directly supported.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    },
+    {
+      "id": "kb-698e4d1ba6fa31:zh:after",
+      "raw_faithfulness": 0.8571428571428571,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "If the T2352 still switches on and off after removing the cover, provide a screenshot of any app error message or the error code.",
+          "reason": "The context's communication anomaly Q&A asks for a screenshot of the error or the error code, but it is a separate section and does not state this as the next step specifically for the switching on and off issue after removing the cover.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    },
+    {
+      "id": "kb-698e4d1ba6fa31:en:after",
+      "raw_faithfulness": 0.5714285714285714,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "The most likely cause of the T2352 switching on and off by itself is an abnormality in the gap at the key position of the decorative cover on the top surface.",
+          "reason": "The context only says to remove the cover to confirm whether the abnormality is lifted, and if it is lifted, it can be judged as an abnormality in the gap of the key position of the decorative cover. It does not state that this is the most likely cause.",
+          "verdict": 0
+        },
+        {
+          "statement": "If the T2352 still switches on and off after removing the cover, please share a screenshot of any app error message or the error code.",
+          "reason": "The context does not provide this instruction for the switching on and off issue; the screenshot/error code request appears in the communication anomaly section, not the power cycling section.",
+          "verdict": 0
+        },
+        {
+          "statement": "The screenshot or error code will allow the manufacturer to check further.",
+          "reason": "The context does not state that a screenshot or error code will allow the manufacturer to check further.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    },
+    {
+      "id": "kb-34c42a3a43d549:en:after",
+      "raw_faithfulness": 0.7,
+      "unsupported_claims_from_ragas": [
+        {
+          "statement": "If the issue persists after cleaning the charging pins, photos or video of the charging pins should be provided.",
+          "reason": "The context does not state that photos or video of the charging pins should be provided if the issue persists; it only mentions cleaning the pins and warranty service if the problem persists.",
+          "verdict": 0
+        },
+        {
+          "statement": "If the issue persists after cleaning the charging pins, photos or video of the charging abnormality screen should be provided.",
+          "reason": "The context does not state that photos or video of the charging abnormality screen should be provided if the issue persists.",
+          "verdict": 0
+        },
+        {
+          "statement": "The photos or video are for further review.",
+          "reason": "The context does not mention photos or video being used for further review in relation to the charging issue.",
+          "verdict": 0
+        }
+      ],
+      "human_status": "pending",
+      "notes": "逐项复核：区分条件被强化、跨故障资料混用，以及Skill授权的信息收集请求。保留原分，不自动把争议改判通过。"
+    }
+  ]
+}

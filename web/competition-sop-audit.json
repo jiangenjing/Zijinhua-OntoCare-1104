@@ -1,0 +1,277 @@
+{
+  "release": "v2",
+  "runtime": {
+    "agent": "ontocare.reference_agent.SourceActionAgent",
+    "code_sha256": "772d57d76d51d9dce5947ba9eeb5bc6dcb02756156bfc6ebaf71c38707de4f6c",
+    "data_sha256": "7e921ca567f7249e0b0589bd49bc88a2b4c1f73631783698ccb0bd7c7a23e77c",
+    "id": "3dec6ceeccc8e10bb1979212b9a3e5e0086528ccba12e2c7ad4c547d1808b630",
+    "model": {
+      "configured": true,
+      "host": "llmapi.paratera.com",
+      "model": "DeepSeek-V4.1-Flash"
+    },
+    "ontology_version": "candidate-1",
+    "prompt_sha256": "83077756a61b41b6cbd8db028f93c414be0f5f8624f9cdef3fded4f93135696f",
+    "reference_snapshot_sha256": "1df99a21a64356c1dab40a2b64f9f631636c53c86d7ab69cbb77a910a6bfc3a3",
+    "retriever": "ontocare.reference_agent.ReferenceRetriever",
+    "scope": "local text/mail; no actual refund or sending"
+  },
+  "reference": "original competition DOCX and embedded SOP image; Feishu online page inaccessible",
+  "source_docx_sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+  "observed": {
+    "rules": {
+      "not_delivered": "CONSIDER_RESHIP",
+      "delivered": "DELIVERED_REQUIRES_REVIEW",
+      "replace_complete": {
+        "outcome": "CONSIDER_REPLACEMENT",
+        "proposed_action": "replacement_request",
+        "missing_facts": [],
+        "checks": [
+          {
+            "condition": "troubleshooting_completed",
+            "state": "PASS"
+          },
+          {
+            "condition": "issue_persists",
+            "state": "PASS"
+          },
+          {
+            "condition": "within_warranty_on_as_of",
+            "state": "PASS"
+          },
+          {
+            "condition": "purchase_proof_verified",
+            "state": "PASS"
+          },
+          {
+            "condition": "shipping_address_verified",
+            "state": "PASS"
+          },
+          {
+            "condition": "media_verified",
+            "state": "PASS"
+          },
+          {
+            "condition": "serial_number_verified",
+            "state": "PASS"
+          }
+        ],
+        "can_execute": false,
+        "as_of": "2026-11-03",
+        "evaluation_basis": "SUPPLIED_FACTS_NOT_INDEPENDENTLY_VERIFIED",
+        "source_rules": [
+          {
+            "id": "brief:fault-replacement",
+            "name": "质保内排障无效的换货建议",
+            "statement": "完成对应故障排查后问题仍存在，可对质保期内产品进行换货处理。",
+            "source": {
+              "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+              "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+              "section": "一、业务SOP",
+              "location": "word/media/image1.jpeg",
+              "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+              "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+            },
+            "subjects": [
+              "ProductModel",
+              "CheckStep",
+              "OrderItem"
+            ],
+            "status": "IMPLEMENTED_RECOMMENDATION",
+            "scope": "COMPETITION_BRIEF_ONLY"
+          },
+          {
+            "id": "brief:required-materials",
+            "name": "售后材料核验",
+            "statement": "换货/退款需订单或购买凭证、发货地址、相关视频/图片；故障问题还需产品 SN。",
+            "source": {
+              "file": "【黑客松】Anekr智能客服赛题（业务资料）.docx",
+              "sha256": "44abb48e5283c09315aef8c776cbf76caff3a20425da372df6d1fe398aa72147",
+              "section": "一、业务SOP",
+              "location": "word/media/image1.jpeg",
+              "interpretation": "按原图或正文核对转录；非自动OCR全覆盖，尚待业务人员确认",
+              "image_sha256": "0919a7db4ff6f4e40e3a2fc78a37b3f412fecd21dfb8d83139bcddd07cfdd631"
+            },
+            "subjects": [
+              "SupportTicket",
+              "ExternalMaterial"
+            ],
+            "status": "IMPLEMENTED_RECOMMENDATION",
+            "scope": "COMPETITION_BRIEF_ONLY"
+          }
+        ],
+        "next_step": "由人工核对身份、来源快照与政策适用性，再决定是否提交操作申请。",
+        "limitations": [
+          "这是赛题 SOP 的本地建议，不是完整全球售后政策",
+          "物流和订单为快照；传入事实不等于身份认证或独立核验",
+          "已送达一般不补发不等于无例外拒绝；退款完整资格规则未提供"
+        ]
+      },
+      "expired": "OUT_OF_WARRANTY_REVIEW"
+    },
+    "dealers": {
+      "US|best buy": {
+        "status": "LIST_MATCH_SCOPE_UNKNOWN",
+        "country": "US",
+        "eligible": null,
+        "competition_authorization": "MATCHED_BY_BRIEF_RULE",
+        "match_policy": {
+          "country": "exact after explicit code aliases GB→UK/SA→KSA/AE→UAE",
+          "seller": "normalized exact or SequenceMatcher >=0.90, runner-up margin >=0.10",
+          "candidate_threshold": 0.72,
+          "threshold_source": "engineering choice; brief gives no numeric threshold"
+        }
+      },
+      "GB|Amazon": {
+        "status": "NOT_IN_SNAPSHOT",
+        "country": "UK",
+        "eligible": null,
+        "competition_authorization": "NOT_MATCHED_BY_BRIEF_RULE",
+        "match_policy": {
+          "country": "exact after explicit code aliases GB→UK/SA→KSA/AE→UAE",
+          "seller": "normalized exact or SequenceMatcher >=0.90, runner-up margin >=0.10",
+          "candidate_threshold": 0.72,
+          "threshold_source": "engineering choice; brief gives no numeric threshold"
+        }
+      },
+      "US|not-a-listed-seller-zzzz": {
+        "status": "NOT_IN_SNAPSHOT",
+        "country": "US",
+        "eligible": null,
+        "competition_authorization": "NOT_MATCHED_BY_BRIEF_RULE",
+        "match_policy": {
+          "country": "exact after explicit code aliases GB→UK/SA→KSA/AE→UAE",
+          "seller": "normalized exact or SequenceMatcher >=0.90, runner-up margin >=0.10",
+          "candidate_threshold": 0.72,
+          "threshold_source": "engineering choice; brief gives no numeric threshold"
+        }
+      }
+    },
+    "refund_branch_required_fields": [
+      "purchase_proof_verified",
+      "shipping_address_verified",
+      "media_verified"
+    ],
+    "order_counts": {
+      "orders": 16,
+      "items": 24
+    },
+    "order_field_presence": {
+      "address": true,
+      "source_rows": true,
+      "status": true
+    },
+    "item_field_presence": {
+      "order_number": true,
+      "sku": true,
+      "description": true,
+      "quantity": true,
+      "purchase_date": true,
+      "warranty_end": true,
+      "amount_raw": true,
+      "carrier": true,
+      "tracking": true,
+      "ship_date": true,
+      "fulfillment_status": true
+    },
+    "action_parameter_fields": [
+      "ticket",
+      "reason"
+    ]
+  },
+  "live_probes": [
+    {
+      "question": "Anker001 物流显示送达，但我没收到，请帮我申请补发。",
+      "mode": "offline_code_path_not_model_quality",
+      "decision": "report_snapshot",
+      "tools": [
+        "lookup_order",
+        "evaluate_service_decision"
+      ],
+      "service_outcome": "NEED_INFORMATION",
+      "missing_facts": [
+        "delivery_confirmed",
+        "customer_received"
+      ],
+      "facts_checks": [
+        {
+          "condition": "delivery_confirmed",
+          "state": "UNKNOWN"
+        },
+        {
+          "condition": "customer_received",
+          "state": "UNKNOWN"
+        }
+      ],
+      "action_receipt": null,
+      "trace_id": "c3afb1aa38c641e982d3db897dc44d5a"
+    },
+    {
+      "question": "T8D04 主机已完成所有对应排查，问题仍然存在，我要申请换货。",
+      "mode": "offline_code_path_not_model_quality",
+      "decision": "collect_component",
+      "tools": [
+        "resolve_semantics",
+        "skill_state",
+        "search_evidence",
+        "evaluate_service_decision",
+        "graph_search"
+      ],
+      "service_outcome": "NEED_INFORMATION",
+      "missing_facts": [
+        "troubleshooting_completed",
+        "issue_persists",
+        "within_warranty_on_as_of"
+      ],
+      "facts_checks": [
+        {
+          "condition": "troubleshooting_completed",
+          "state": "UNKNOWN"
+        },
+        {
+          "condition": "issue_persists",
+          "state": "UNKNOWN"
+        },
+        {
+          "condition": "within_warranty_on_as_of",
+          "state": "UNKNOWN"
+        }
+      ],
+      "action_receipt": null,
+      "trace_id": "f0312c2b08ef4eb88c145cae38e55236"
+    },
+    {
+      "question": "US 的 best buy 能直接保修吗？",
+      "mode": "offline_code_path_not_model_quality",
+      "decision": "collect_purchase_evidence",
+      "tools": [
+        "check_dealer"
+      ],
+      "service_outcome": null,
+      "missing_facts": null,
+      "facts_checks": null,
+      "action_receipt": null,
+      "trace_id": "f530eae7ad304687aec35e288094765f"
+    }
+  ],
+  "ticket_counts_by_pn": {
+    "UNRESOLVED": 4,
+    "T2080": 13,
+    "T2351": 12,
+    "T2353": 8,
+    "T2292": 3,
+    "T2352": 5,
+    "T8D04": 12,
+    "T8170": 3,
+    "T2280": 3
+  },
+  "source_counts": {
+    "客诉工单信息": 63,
+    "订单信息": 24,
+    "eufy Robovacs Q&A": 593,
+    "eufy Breast Pump Q&A": 282,
+    "经销商信息": 336
+  },
+  "verdict": "PARTIALLY_ALIGNED_NOT_COMPLETE_WORKFLOW",
+  "behavior_changed": false
+}

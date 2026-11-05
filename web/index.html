@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OntoCare · 安小克智能客服</title><link rel="stylesheet" href="/static/competition.css"></head>
+<body>
+<header class="app-header">
+ <a class="app-brand" href="/"><img src="/static/assets/anker-wordmark.png" alt="ANKER" width="96" height="38"><span><b>OntoCare</b><small>安克售后服务</small></span></a>
+ <nav class="view-tabs" aria-label="主导航"><button data-page="chat" class="selected">用户端</button><button data-page="library">商家端 · 全量资料</button><button data-page="ontology">本体与图谱</button></nav>
+ <div class="header-actions"><a class="quiet" href="/service">智能服务首页 ↗</a><button id="toolsToggle" class="quiet" aria-expanded="true">演示工具</button><div class="language"><button data-language="zh" class="selected">中文</button><button data-language="en">EN</button></div></div>
+</header>
+<main>
+<section id="chat" class="page">
+ <div class="judge-intro"><div><div class="eyebrow">ANKER × ONTOCARE · LIVE EXPERIENCE</div><h1>每一次回答，都有据可循<span>。</span></h1><p>直接提问，看产品、订单与知识在对话中连接。</p></div><div class="judge-signals"><span id="modelPill">正在检查连接</span><span>对话即图谱</span><span>来源可追溯</span></div></div>
+ <div class="customer-main" id="chatWorkspace">
+  <div class="chat-panel">
+   <div class="chat-head"><span class="online-dot"></span><span>安小克 · 安克智能客服</span><button id="newSession" class="quiet">＋ 新对话</button></div>
+   <div id="conversation" class="chat-log" aria-label="客服对话" aria-live="polite"><div class="message assistant welcome"><span class="avatar">小克</span><div class="message-body">你好，我是安小克。请告诉我产品型号、遇到的现象，以及已经尝试过的操作。我会先查询适用资料，再给出有依据的建议。</div></div><div id="busy" class="pending" hidden role="status">正在查询本体、整理证据并请求模型，请稍候…</div></div>
+   <form id="chatForm" class="composer">
+    <div class="quick-suggestions"><span>猜你想问</span><div class="quick-buttons"><button type="button" data-prompt="我的 E25 报错误码3212，应该先检查什么？">E25 错误码 3212</button><button type="button" data-prompt="T8D04 的可清洗配件保修多久？">部件质保</button><button type="button" data-prompt="我的 T8D04 用过了，还能退款吗？">退款条件</button></div></div>
+    <label for="message" class="sr-only">用户问题或邮件原文</label><textarea id="message" rows="2" placeholder="描述你的问题；Enter 发送，Shift+Enter 换行" required></textarea>
+    <div class="composer-bottom"><label><input id="mail" type="checkbox">生成邮件草稿</label><span id="connectionStatus" role="status">正在读取模型配置</span><button id="send" type="submit">发送 ↗</button></div>
+    <details class="connection-settings"><summary>运行方式与版本</summary><label>运行方式 <select id="mode"><option value="live">真实模型</option><option value="offline">离线回放</option></select></label><label>本体／Skill 版本 <select id="version"></select></label><small>模型连接保存在后端。邮件仅生成草稿；不执行退款、换货或真人转接。</small></details>
+   </form>
+  </div>
+  <aside id="processPanel" class="ontology-rail" aria-label="本体与证据追踪">
+   <div class="ontology-heading"><div><div class="eyebrow">SERVICE ONTOLOGY</div><h2>对话中的本体与证据</h2></div><span id="nodeCount" class="node-count">0</span></div><p id="graphHint" class="note">提问后，这里会显示本次实际命中的型号、知识与检查动作。</p>
+   <div id="graphPreview" class="ontology-canvas"><span>等待一条新的问题</span></div><div id="answerMeta" class="meta"></div>
+   <div class="rail-links"><a href="/ontology/manager" target="_blank">本体管理工作台 ↗</a><a id="currentGraph" href="/ontology/native?pn=all" target="_blank">完整本体图谱 ↗</a><a href="/library?kind=qa">全部 Q&A ↗</a><a href="/library?kind=tickets">全部工单 ↗</a></div>
+   <details class="evidence-section" open><summary>本次引用的资料</summary><div id="sources"><p class="note">尚无引用。资料会标明文件、行号与适用型号。</p></div></details>
+   <details class="trace-section"><summary>Skill 与实际处理轨迹</summary><ol id="processSteps"></ol><pre id="trace">等待处理记录</pre></details>
+   <div class="rail-tools"><button data-page="data" class="quiet">数据来源</button><button data-page="evaluation" class="quiet">评测与改进</button></div>
+  </aside>
+ </div>
+</section>
+<section id="ontology" class="page" hidden><div class="eyebrow">ONTOLOGY LAYER</div><h1>知识、约束与处理方法。</h1><p class="intro">本体描述对象与条件，Skill 管理处理步骤；每个版本单独保存。图谱按型号展示部分来源节点，完整记录保存在仓库。</p><div class="toolbar"><label>查询 <input id="semanticQuery" value="T2353"></label><button id="resolve">查询本体</button><a id="graphLink" href="/ontology/native?pn=T2353" target="_blank">打开该型号的局部图谱 ↗</a></div><div class="tabs"><button data-layer="content">内容层</button><button data-layer="schema">Schema</button><button data-layer="tools">工具层</button><button data-layer="skills">Skill</button><button data-layer="diff">与初始版本比较</button></div><pre id="semanticOutput"></pre><p class="note">原生图谱的 Schema 页展示上游通用结构；本页 Schema 与工具记录来自所选版本，三层界面本身不证明自主进化。</p></section>
+<section id="data" class="page" hidden><div class="eyebrow">DATA LINEAGE</div><h1>从源头开始核对。</h1><div id="counts" class="cards"></div><p class="intro">三个拆分文件与总表的对应字段一致，只导入一套记录。隐藏资料不进入客户召回。</p><details open><summary>清洗与来源报告</summary><pre id="audit"></pre></details></section>
+<section id="evaluation" class="page" hidden><div class="eyebrow">CONTROLLED EVOLUTION</div><h1>把改进交给证据。</h1><p class="intro">离线断言、模型裁判、人工复核分别记录。通过率不等于真实问题解决率。</p><img src="/reports/curve.svg" alt="所有候选的离线检查历史曲线" class="curve"><div class="toolbar"><a href="/reports/report.html" target="_blank">完整评测报告 ↗</a><a href="/reports/manual-review.json" target="_blank">待人工抽检包 ↗</a></div><pre id="report"></pre></section>
+<section id="library" class="page" hidden><div class="eyebrow">COMPLETE SOURCE LIBRARY</div><h1>全部资料，都能查到。</h1><p class="intro">浏览完整客诉邮件、Q&A 的每一条原文和原始字段。图谱只是关系视图，这里是全部原始内容。</p><div id="catalogCounts" class="cards"></div><div class="tabs catalog-tabs"><button data-kind="tickets">客诉工单</button><button data-kind="qa">全部 Q&A</button><button data-kind="media">原始图片附件</button></div><form id="catalogFilters" class="catalog-filters"><label>搜索原文／型号／订单号<input id="catalogQuery" type="search" placeholder="例如：3212、warranty、Anker001"></label><label>产品型号<select id="catalogPn"><option value="">全部型号</option><option value="unresolved">型号待核实</option></select></label><label id="sceneFilter">咨询场景<select id="catalogScene"><option value="">全部场景</option></select></label><label id="sheetFilter" hidden>Q&A 来源<select id="catalogSheet"><option value="">全部来源</option></select></label><label id="visibilityFilter" hidden>可见状态<select id="catalogVisibility"><option value="all">全部（含隐藏）</option><option value="visible">客户可见</option><option value="hidden">隐藏记录</option></select></label><label>每页<select id="catalogSize"><option>20</option><option>50</option><option>100</option><option value="all">全部</option></select></label><button type="submit">搜索</button><button id="catalogReset" class="quiet" type="button">清除筛选</button></form><p id="catalogNotice" class="note">这是本机原始资料浏览。隐藏知识可查看，但不会用于客户回复。</p><div class="catalog-pager"><span id="catalogRange" role="status"></span><button id="catalogPrev" class="quiet">上一页</button><label>第 <input id="catalogJump" type="number" min="1" value="1" aria-label="资料页码"> 页</label><button id="catalogNext" class="quiet">下一页</button></div><div class="catalog-layout"><div id="catalogList" class="catalog-list" aria-label="资料列表"></div><article id="catalogDetail" class="catalog-detail" aria-label="资料全文"><p>选择一条记录查看完整内容。</p></article></div></section>
+
+</main><script src="/static/chat.js"></script><script src="/static/catalog.js"></script></body></html>

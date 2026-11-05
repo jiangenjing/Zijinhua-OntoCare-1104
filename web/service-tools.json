@@ -1,0 +1,694 @@
+{
+  "tools": [
+    {
+      "name": "list_ontologies",
+      "title": null,
+      "description": "List available ontology versions and trusted local data boundaries.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_ontologiesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_topologies",
+      "title": null,
+      "description": "List service, order, dealer, and knowledge topology presets.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_topologiesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_classes",
+      "title": null,
+      "description": "List object types and visible instance counts.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_classesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_class_detail",
+      "title": null,
+      "description": "Read a class definition, properties and relations.",
+      "inputSchema": {
+        "properties": {
+          "class_id": {
+            "title": "Class Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "class_id"
+        ],
+        "title": "get_class_detailArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_relations",
+      "title": null,
+      "description": "Read relation meanings, endpoints and cardinality.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_relationsArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "search_instances",
+      "title": null,
+      "description": "Search visible instances; bounded pagination, no arbitrary SQL.",
+      "inputSchema": {
+        "properties": {
+          "class_id": {
+            "default": "",
+            "title": "Class Id",
+            "type": "string"
+          },
+          "query": {
+            "default": "",
+            "title": "Query",
+            "type": "string"
+          },
+          "page": {
+            "default": 1,
+            "title": "Page",
+            "type": "integer"
+          },
+          "page_size": {
+            "default": 20,
+            "title": "Page Size",
+            "type": "integer"
+          }
+        },
+        "title": "search_instancesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_instance_detail",
+      "title": null,
+      "description": "Read up to 20 object details with direct relationships.",
+      "inputSchema": {
+        "properties": {
+          "instance_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Instance Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "instance_ids"
+        ],
+        "title": "get_instance_detailArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_instance_topology",
+      "title": null,
+      "description": "Get up to 3 hops, at most 100 visible nodes; report truncation.",
+      "inputSchema": {
+        "properties": {
+          "instance_id": {
+            "title": "Instance Id",
+            "type": "string"
+          },
+          "depth": {
+            "default": 1,
+            "title": "Depth",
+            "type": "integer"
+          },
+          "direction": {
+            "default": "both",
+            "title": "Direction",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance_id"
+        ],
+        "title": "get_instance_topologyArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "search_knowledge",
+      "title": null,
+      "description": "Retrieve published consumer-visible evidence for a confirmed PN.",
+      "inputSchema": {
+        "properties": {
+          "pn": {
+            "title": "Pn",
+            "type": "string"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error Code"
+          }
+        },
+        "required": [
+          "pn",
+          "query"
+        ],
+        "title": "search_knowledgeArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "lookup_order",
+      "title": null,
+      "description": "Read a local order, item fulfillment and package snapshots; no address.",
+      "inputSchema": {
+        "properties": {
+          "order_number": {
+            "title": "Order Number",
+            "type": "string"
+          }
+        },
+        "required": [
+          "order_number"
+        ],
+        "title": "lookup_orderArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "check_dealer",
+      "title": null,
+      "description": "Check country-scoped seller listing; never assert warranty eligibility.",
+      "inputSchema": {
+        "properties": {
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "seller": {
+            "title": "Seller",
+            "type": "string"
+          }
+        },
+        "required": [
+          "country",
+          "seller"
+        ],
+        "title": "check_dealerArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_types",
+      "title": null,
+      "description": "List ObjectType, LinkType, ActionType or FunctionType contracts and status.",
+      "inputSchema": {
+        "properties": {
+          "kind": {
+            "default": "",
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "title": "list_typesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "submit_for_review",
+      "title": null,
+      "description": "Submit a LOCAL review only when server writes are enabled; never refund or send mail.",
+      "inputSchema": {
+        "properties": {
+          "ticket_id": {
+            "title": "Ticket Id",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "idempotency_key": {
+            "title": "Idempotency Key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ticket_id",
+          "reason",
+          "idempotency_key"
+        ],
+        "title": "submit_for_reviewArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_source_coverage",
+      "title": null,
+      "description": "Explain inclusion and exclusions for every workbook sheet.",
+      "inputSchema": {
+        "properties": {},
+        "title": "get_source_coverageArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "plan_customer_service",
+      "title": null,
+      "description": "Return evidence-based next steps and missing facts, without making promises.",
+      "inputSchema": {
+        "properties": {
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "pn": {
+            "default": "",
+            "title": "Pn",
+            "type": "string"
+          },
+          "order_number": {
+            "default": "",
+            "title": "Order Number",
+            "type": "string"
+          },
+          "country": {
+            "default": "",
+            "title": "Country",
+            "type": "string"
+          },
+          "seller": {
+            "default": "",
+            "title": "Seller",
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "title": "plan_customer_serviceArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_delivery_report",
+      "title": null,
+      "description": "Read implemented features and remaining production integration gaps.",
+      "inputSchema": {
+        "properties": {},
+        "title": "get_delivery_reportArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "evaluate_service_decision",
+      "title": null,
+      "description": "Evaluate competition SOP facts and missing evidence; recommendations only, never execute remedies.",
+      "inputSchema": {
+        "properties": {
+          "facts": {
+            "additionalProperties": true,
+            "title": "Facts",
+            "type": "object"
+          },
+          "as_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "As Of"
+          }
+        },
+        "required": [
+          "facts"
+        ],
+        "title": "evaluate_service_decisionArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_report_templates",
+      "title": null,
+      "description": "List executive, GTM, operations and governance templates with Skill and Prompt.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_report_templatesArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "generate_report",
+      "title": null,
+      "description": "Generate and SAVE a local report artifact; live invokes a model. Never edits business facts. Use snapshot for no model call.",
+      "inputSchema": {
+        "properties": {
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          },
+          "focus": {
+            "default": "",
+            "title": "Focus",
+            "type": "string"
+          },
+          "mode": {
+            "default": "live",
+            "title": "Mode",
+            "type": "string"
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Version"
+          }
+        },
+        "required": [
+          "template_id"
+        ],
+        "title": "generate_reportArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "list_reports",
+      "title": null,
+      "description": "List up to 50 saved local report artifacts, newest first.",
+      "inputSchema": {
+        "properties": {},
+        "title": "list_reportsArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_report",
+      "title": null,
+      "description": "Read a report and its frozen evidence, rather than recomputing history.",
+      "inputSchema": {
+        "properties": {
+          "report_id": {
+            "title": "Report Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "report_id"
+        ],
+        "title": "get_reportArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    },
+    {
+      "name": "get_report_evidence",
+      "title": null,
+      "description": "Inspect a saved report metric's definition, value and exact source object IDs.",
+      "inputSchema": {
+        "properties": {
+          "report_id": {
+            "title": "Report Id",
+            "type": "string"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "report_id",
+          "evidence_id"
+        ],
+        "title": "get_report_evidenceArguments",
+        "type": "object"
+      },
+      "outputSchema": null,
+      "icons": null,
+      "annotations": {
+        "title": null,
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": null,
+        "openWorldHint": false
+      },
+      "meta": null,
+      "execution": null
+    }
+  ]
+}
